@@ -4,7 +4,7 @@
   "description": "avito clone ",
   "main": "index.js",
   "scripts": {
-    "install-all": "cd client && npm install && cd ../server && npm install",
+    "install:all": "cd client && npm install && cd ../server && npm install",
     "start:client": "cd client && npm run dev",
     "start:server": "cd server && npm run dev",
     "start:dev": "concurrently \"npm run start:client\" \"npm run start:server\""
