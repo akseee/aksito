@@ -1,7 +1,14 @@
+import styles from "./app.module.css";
+
 import { Route, Routes } from "react-router-dom";
 import { AppHeader } from "../app-header/app-header";
-import styles from "./app.module.css";
-import { NotFound404, ListPage, ItemPage, FormEditPage } from "@/pages";
+import {
+  NotFound404,
+  ListPage,
+  ItemPage,
+  FormEditPage,
+  LoginPage,
+} from "@/pages";
 
 const App = () => {
   return (
@@ -12,8 +19,8 @@ const App = () => {
         <Route path="/" element={<ListPage />} />
         <Route path="/form" element={<FormEditPage />} />
         <Route path="/item/:id" element={<ItemPage />} />
-        {/* <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} /> */}
+        <Route path="/login" element={<LoginPage />} />
+        {/*    <Route path="/register" element={<RegisterPage />} /> */}
       </Routes>
     </div>
   );
