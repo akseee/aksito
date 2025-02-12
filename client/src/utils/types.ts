@@ -14,6 +14,7 @@ export type categoryType = "Недвижимость" | "Авто" | "Услуг
 export type ItemType = EstateType | AutoType | ServiceType;
 
 export type BaseType = {
+  id: Id;
   name: string;
   description: string;
   location: string;

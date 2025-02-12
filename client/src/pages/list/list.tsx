@@ -7,7 +7,7 @@ import { Pagination, SearchBar } from "@components";
 import { CardPreview } from "src/components/ui/card-preview";
 
 export const ListPage: FC = () => {
-  const [loading] = useState("loading");
+  const [loading] = useState("success");
 
   return (
     <>
