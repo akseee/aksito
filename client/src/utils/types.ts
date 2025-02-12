@@ -11,7 +11,9 @@ export enum RequestStatus {
 
 export type categoryType = "Недвижимость" | "Авто" | "Услуги";
 
-export type ItemType = {
+export type ItemType = EstateType | AutoType | ServiceType;
+
+export type BaseType = {
   name: string;
   description: string;
   location: string;
@@ -19,21 +21,21 @@ export type ItemType = {
   image?: string;
 };
 
-export type EstateType = {
+export type EstateType = BaseType & {
   propertyType: string;
   area: number;
   rooms: number;
   price: number;
 };
 
-export type AutoType = {
+export type AutoType = BaseType & {
   brand: string;
   model: string;
   year: number;
   mileage?: number;
 };
 
-export type ServiceType = {
+export type ServiceType = BaseType & {
   serviceType: string;
   experience: number;
   cost: number;
