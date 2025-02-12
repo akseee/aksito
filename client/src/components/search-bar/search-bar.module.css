@@ -1,0 +1,16 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 1rem;
+  max-width: 80%;
+}
+
+.input {
+  border: 1px solid var(--color);
+  border-radius: 1rem;
+  padding: 0.7rem;
+}
+
+.input:focus {
+  background-color: var(--background-color-darker);
+}

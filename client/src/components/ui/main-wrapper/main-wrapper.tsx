@@ -1,4 +1,10 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./main-wrapper.module.css";
 
-export const MainWrapper: FC = () => <main className={styles.wrapper}></main>;
+type MainWrapperProps = {
+  children: ReactNode;
+};
+
+export const MainWrapper: FC<MainWrapperProps> = ({ children }) => (
+  <main className={styles.wrapper}>{children}</main>
+);
