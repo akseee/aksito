@@ -23,12 +23,12 @@
     "noUncheckedSideEffectImports": true,
 
     /* Aliases */
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@pages/*": ["src/pages/*"],
-      "@components/*": ["src/components/*"],
-      "@ui/*": ["src/components/ui/*"]
+      "@": ["src"],
+      "@pages": ["src/pages"],
+      "@components": ["src/components"],
+      "@ui": ["src/components/ui"]
     }
   },
   "include": ["src"]

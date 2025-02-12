@@ -1,8 +1,9 @@
 import { FC } from "react";
-import styles from "./app-header.module.css";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
+
+import styles from "./app-header.module.css";
 
 export const AppHeaderUI: FC = () => (
   <header className={styles.header}>

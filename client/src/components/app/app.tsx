@@ -1,14 +1,15 @@
+import {
+  FormEditPage,
+  ItemPage,
+  ListPage,
+  LoginPage,
+  NotFound404,
+} from "@pages";
+
 import styles from "./app.module.css";
 
 import { Route, Routes } from "react-router-dom";
-import { AppHeader } from "../app-header/app-header";
-import {
-  NotFound404,
-  ListPage,
-  ItemPage,
-  FormEditPage,
-  LoginPage,
-} from "@/pages";
+import { AppHeader } from "@components";
 
 const App = () => {
   return (

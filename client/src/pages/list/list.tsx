@@ -1,9 +1,9 @@
-import { Preloader } from "@/components/ui/preloader";
-import { RequestStatus } from "@/utils/types";
+import { Preloader } from "@ui";
 import { FC, useState } from "react";
+import { RequestStatus } from "src/utils/types";
 
 export const ListPage: FC = () => {
-  const [loading, setLoading] = useState("loading");
+  const [loading, setLoading] = useState("success");
 
   return (
     <>
