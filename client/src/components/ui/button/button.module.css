@@ -1,29 +1,17 @@
 .button {
   border: 1px solid var(--color);
   border-radius: 1rem;
+  padding: 0.7rem;
   transition: all 0.3s ease-in-out;
 }
 
 .button:hover {
+  box-shadow: var(--box-shadow);
   background-color: var(--background-color-lighter);
 }
 
 .button:active {
+  box-shadow: var(--box-shadow);
   background-color: var(--background-color-darker);
   transform: scale(0.97);
-}
-
-.large {
-  padding: 1.2rem;
-  font-size: 1.5rem;
-}
-
-.medium {
-  padding: 0.7rem;
-  font-size: 1rem;
-}
-
-.small {
-  padding: 0.5rem;
-  font-size: 0.7rem;
 }

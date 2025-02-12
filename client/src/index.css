@@ -7,6 +7,8 @@
   --green: #00e066;
   --blue: #00aaff;
   --red: #ff4053;
+  --grey: #858585;
+  --box-shadow: 1px 2px 1px 1px #858585;
 }
 
 *,

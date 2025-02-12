@@ -7,7 +7,6 @@ export const SearchBar: FC = () => {
     <form className={styles.form}>
       <Button
         extraClass={styles.category}
-        size="medium"
         onClick={() => console.log("click")}
         htmlType="button"
       >
@@ -17,8 +16,8 @@ export const SearchBar: FC = () => {
         className={styles.input}
         type="search"
         name="search"
-        placeholder="Enter a character within the Star Wars universe"
-        value={"value"}
+        placeholder="Enter search"
+        value={""}
         onChange={(e) => console.log(e)}
       />
       <Button
