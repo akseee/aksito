@@ -7,10 +7,6 @@ import { NavLink } from "react-router-dom";
 export const ItemPage: FC = () => {
   const { item, isItemLoading } = useItem(1);
 
-  if (isItemLoading) {
-    return <Preloader />;
-  }
-
   if (!item) return <p>Объявление не найдено</p>;
 
   const isAuth = true;
@@ -22,6 +18,7 @@ export const ItemPage: FC = () => {
         <h2 className={styles.type}>{item.type}</h2>
       </div>
       <div className={styles.content}>
+        {isItemLoading ?? <Preloader />}
         <h3 className={styles.title}>{item.name}</h3>
         {isAuth ? (
           <Button

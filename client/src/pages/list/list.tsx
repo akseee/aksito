@@ -6,16 +6,12 @@ import { Pagination, SearchBar } from "@components";
 import { CardPreview } from "src/components/ui/card-preview";
 import { NavLink } from "react-router-dom";
 import { useItems } from "src/hooks/useItems";
-import { useItem } from "src/hooks/useItem";
 
 export const ListPage: FC = () => {
   const { items, areItemsLoading } = useItems();
-  const { item, isItemLoading } = useItem(0);
-  console.log(item);
 
   return (
     <>
-      {isItemLoading && <Preloader />}
       <h2 className={styles.title}>Список объявлений</h2>
       <div className={styles.content}>
         <SearchBar></SearchBar>
@@ -23,8 +19,10 @@ export const ListPage: FC = () => {
         <ul className={styles["cards-list"]}>
           {areItemsLoading ? (
             <Preloader />
-          ) : items?.length ? (
-            items.map((item) => {
+          ) : items?.length === 0 ? (
+            <p>Объявлений нет:c Будь первым кто его разместит!</p>
+          ) : (
+            items?.map((item) => {
               return (
                 <NavLink to={`item/${item.id}`} key={item.id}>
                   <CardPreview
@@ -42,8 +40,6 @@ export const ListPage: FC = () => {
                 </NavLink>
               );
             })
-          ) : (
-            <p>Объявлений нет:c Будь первым кто его разместит!</p>
           )}
         </ul>
       </div>
