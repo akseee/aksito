@@ -36,7 +36,7 @@ export const ListPage: FC = () => {
                     location={item.location}
                     image={
                       item.image ??
-                      "https://filestore.community.support.microsoft.com/api/images/72e3f188-79a1-465f-90ca-27262d769841"
+                      "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                     }
                   ></CardPreview>
                 </NavLink>
