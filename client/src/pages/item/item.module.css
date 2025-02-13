@@ -41,38 +41,12 @@
   background-color: var(--purple);
 }
 
-.details {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  font-size: 1.2rem;
-  text-align: right;
-}
-
-.detail {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  text-align: left;
-}
-
-.detail div {
-  color: var(--purple);
-  font-weight: bold;
-}
-
 .img {
-  height: 100%;
+  grid-template-rows: 1 / -1;
   object-fit: fill;
 }
 
 .description {
-  grid-column: 1/ -1;
+  padding: 1rem;
   font-size: 1.2rem;
 }
-/*
-={styles.title}>{item?.name}</div>
-        <div className={styles.edit}>BUTTON</div>
-        <div className={styles.details}>ХАРАКТЕРИСТИКИ</div>
-        <div className={styles.img}>ФОТО</div>
-        <div className={styles.description}>{item?.description}</div> */
