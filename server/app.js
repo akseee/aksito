@@ -9,8 +9,12 @@ const ItemTypes = {
 };
 
 const app = express();
-app.use(bodyParser.json());
-app.options("*", cors());
+app.use(
+  bodyParser.json(),
+  cors({
+    origin: "*",
+  })
+);
 
 // In-memory хранилище для объявлений
 let items = [];
