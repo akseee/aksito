@@ -28,7 +28,7 @@ export const AppHeaderUI: FC = () => (
         Вход и регистрация
       </NavLink>
       <NavLink
-        to="/form"
+        to="/form/publish"
         className={({ isActive }) =>
           isActive ? clsx(styles.active, styles.link) : styles.link
         }

@@ -1,5 +1,6 @@
 import {
   FormEditPage,
+  FormPublishPage,
   ItemPage,
   ListPage,
   LoginPage,
@@ -20,7 +21,8 @@ const App = () => {
         <Routes>
           <Route path="*" element={<NotFound404 />} />
           <Route path="/" element={<ListPage />} />
-          <Route path="/form" element={<FormEditPage />} />
+          <Route path="/form/edit" element={<FormEditPage />} />
+          <Route path="/form/publish" element={<FormPublishPage />} />
           <Route path="/item/:id" element={<ItemPage />} />
           <Route path="/login" element={<LoginPage />} />
           {/*    <Route path="/register" element={<RegisterPage />} /> */}
