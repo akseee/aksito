@@ -9,6 +9,8 @@
   --red: #ff4053;
   --grey: #858585;
   --box-shadow: 1px 2px 1px 1px #858585;
+  --box-shadow-red: 1px 2px 1px 1px var(--red);
+  --box-shadow-green: 1px 2px 1px 1px var(--green);
 }
 
 *,

@@ -1,0 +1,22 @@
+.input {
+  border: 1px solid var(--color);
+  border-radius: 1rem;
+  padding: 0.7rem;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease-in-out;
+}
+
+.input:hover {
+  box-shadow: var(--box-shadow-green);
+  background-color: var(--background-color-lighter);
+}
+
+.input:focus {
+  box-shadow: var(--box-shadow-green);
+  outline: none;
+  background-color: var(--background-color-darker);
+}
+
+.input:active {
+  box-shadow: var(--box-shadow);
+}
