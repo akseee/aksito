@@ -1,10 +1,9 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 
-type userType = {
+export type userType = {
   id: number;
-  name: string;
   password: string;
-  login: string;
+  email: string;
 };
 
 type InitialState = {

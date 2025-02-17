@@ -24,14 +24,26 @@ export const AppHeaderUI: FC<AppHeaderProps> = ({ user }) => {
         >
           Объявления
         </NavLink>
-        <NavLink
-          to="/login"
-          className={({ isActive }) =>
-            isActive ? clsx(styles.active, styles.link) : styles.link
-          }
-        >
-          {!user ? "Вход и регистрация" : "Выход из аккаунта"}
-        </NavLink>
+        {!user ? (
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              isActive ? clsx(styles.active, styles.link) : styles.link
+            }
+          >
+            Вход и регистрация
+          </NavLink>
+        ) : (
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              isActive ? clsx(styles.active, styles.link) : styles.link
+            }
+          >
+            Мой аккаунт
+          </NavLink>
+        )}
+
         <NavLink
           to="/form/publish"
           className={({ isActive }) =>

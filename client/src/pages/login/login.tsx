@@ -1,12 +1,14 @@
-import { FC, useContext, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useContext, useState } from "react";
 import styles from "./login.module.css";
 import { Button, Input } from "@ui";
-import { UserContext } from "src/context/UserContext";
-import { NavLink } from "react-router-dom";
+import { UserContext, userType } from "src/context/UserContext";
+import { Form, Navigate, NavLink } from "react-router-dom";
 
 export const LoginPage: FC = () => {
-  const [userData, setUserData] = useState({
-    name: "",
+  // const [formState, setFormState] = useState(false);
+  const [userData, setUserData] = useState<
+    Pick<userType, "password" | "email">
+  >({
     email: "",
     password: "",
   });
@@ -20,13 +22,33 @@ export const LoginPage: FC = () => {
   const { isAuthChecked, isAuthenticated, login, logout, data } = context;
   console.log(isAuthChecked, isAuthenticated, login, logout, data);
 
-  const handleInputChange = () => {};
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData({
+      ...userData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (!userData.email || !userData.password) {
+      return;
+    }
+    login({ ...userData, id: Number(Date.now()) });
+
+    return <Navigate to={"/list"} />;
+  };
+  // ч
+  // if (isAuthenticated) {
+  //   return <Navigate to={"/list"} />;
+  // }
 
   return (
     <>
       <h2 className={styles.title}>Вход</h2>
       <div className={styles.content}>
-        <form onSubmit={() => {}} className={styles.form}>
+        <Form onSubmit={handleSubmit} className={styles.form}>
           <h2 className={styles.heading}>Войти в личный кабинет</h2>
           <Input
             placeholder="Email"
@@ -41,10 +63,8 @@ export const LoginPage: FC = () => {
             name="password"
             handleChange={handleInputChange}
           />
-          <Button htmlType="submit" onClick={() => console.log("submitting")}>
-            Войти
-          </Button>
-        </form>
+          <Button htmlType="submit">Войти</Button>
+        </Form>
         <div className={styles.links}>
           <NavLink to="/">Нет аккаунта?</NavLink>
           <NavLink to="/">Забыли пароль?</NavLink>
