@@ -48,20 +48,20 @@ const UserProvider = ({ children }: UserProviderProps) => {
   }, []);
 
   const login = (userData: userType) => {
-    setState((prevState) => ({
-      ...prevState,
+    setState({
+      ...state,
       isAuthenticated: true,
       data: userData,
-    }));
+    });
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
   const logout = () => {
-    setState((prevState) => ({
-      ...prevState,
+    setState({
+      ...state,
       isAuthenticated: false,
       data: null,
-    }));
+    });
     localStorage.removeItem("user");
   };
 

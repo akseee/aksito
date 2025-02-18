@@ -37,7 +37,7 @@ export const LoginPage: FC = () => {
     }
     login({ ...userData, id: Number(Date.now()) });
 
-    return <Navigate to={"/list"} />;
+    return <Navigate to={"/profile"} />;
   };
   // ч
   // if (isAuthenticated) {
@@ -48,7 +48,7 @@ export const LoginPage: FC = () => {
     <>
       <h2 className={styles.title}>Вход</h2>
       <div className={styles.content}>
-        <Form onSubmit={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <h2 className={styles.heading}>Войти в личный кабинет</h2>
           <Input
             placeholder="Email"
@@ -64,7 +64,7 @@ export const LoginPage: FC = () => {
             handleChange={handleInputChange}
           />
           <Button htmlType="submit">Войти</Button>
-        </Form>
+        </form>
         <div className={styles.links}>
           <NavLink to="/">Нет аккаунта?</NavLink>
           <NavLink to="/">Забыли пароль?</NavLink>

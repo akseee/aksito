@@ -16,6 +16,11 @@ export const ProtectedRoute = ({
   const context = useContext(UserContext);
 
   const location = useLocation();
+
+  if (!context) {
+    throw new Error("Protected Route must be used inside of <UserProvider/>");
+  }
+
   const { isAuthChecked, data } = context;
 
   if (!isAuthChecked) {
