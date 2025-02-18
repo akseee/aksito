@@ -5,6 +5,7 @@ import {
   ListPage,
   LoginPage,
   NotFound404,
+  ProfilePage,
 } from "@pages";
 
 import styles from "./app.module.css";
@@ -75,7 +76,7 @@ const App = () => {
                 index
                 element={
                   <ProtectedRoute>
-                    <div>/profile route</div>
+                    <ProfilePage />
                   </ProtectedRoute>
                 }
               />

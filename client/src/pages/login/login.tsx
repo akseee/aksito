@@ -2,10 +2,9 @@ import { ChangeEvent, FC, FormEvent, useContext, useState } from "react";
 import styles from "./login.module.css";
 import { Button, Input } from "@ui";
 import { UserContext, userType } from "src/context/UserContext";
-import { Form, Navigate, NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 
 export const LoginPage: FC = () => {
-  // const [formState, setFormState] = useState(false);
   const [userData, setUserData] = useState<
     Pick<userType, "password" | "email">
   >({
@@ -39,10 +38,6 @@ export const LoginPage: FC = () => {
 
     return <Navigate to={"/profile"} />;
   };
-  // ч
-  // if (isAuthenticated) {
-  //   return <Navigate to={"/list"} />;
-  // }
 
   return (
     <>

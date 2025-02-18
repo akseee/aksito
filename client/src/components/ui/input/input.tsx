@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 import styles from "./input.module.css";
 
 type InputProps = {
   placeholder: string;
   value: string;
   name: string;
-  handleChange: () => void;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const Input: FC<InputProps> = ({
