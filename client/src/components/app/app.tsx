@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/form">
             <Route
               index
-              path="edit"
+              path="edit/:id"
               element={
                 <ProtectedRoute>
                   <FormEditPage />

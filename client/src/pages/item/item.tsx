@@ -1,24 +1,30 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { useItem } from "src/hooks/useItem";
 import styles from "./item.module.css";
 import { Button, ContentWrapper, ItemDetail, Preloader } from "@ui";
+import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "src/context/UserContext";
 
 export const ItemPage: FC = () => {
-  const { item, isItemLoading } = useItem(1);
+  const navigate = useNavigate();
+  const context = useContext(UserContext);
+  const { id } = useParams<{ id: string }>();
 
+  const { isAuthenticated } = context;
+  const { item, isItemLoading } = useItem(id ?? "");
+
+  if (!context) return <p>No context</p>;
   if (!item) return <p>Объявление не найдено</p>;
-
-  const isAuth = true;
 
   return (
     <ContentWrapper title={item.type} button={true} extraClass={styles.box}>
-      {isItemLoading ?? <Preloader />}
+      {isItemLoading && <Preloader />}
       <h3 className={styles.title}>{item.name}</h3>
-      {isAuth ? (
+      {isAuthenticated ? (
         <Button
           htmlType="button"
           extraClass={styles.edit}
-          onClick={() => console.log(item.id)}
+          onClick={() => navigate(`/form/edit/${item.id}`)}
         >
           Редактировать объявление
         </Button>
