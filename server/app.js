@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 
 const ItemTypes = {
   REAL_ESTATE: "Недвижимость",
@@ -18,7 +19,13 @@ app.use(
 
 // In-memory хранилище для объявлений
 let items = [];
-let users = [];
+let users = [
+  {
+    id: 1,
+    email: "test@example.com",
+    password: "123123",
+  },
+];
 
 const makeCounter = () => {
   let count = 0;
@@ -146,7 +153,29 @@ app.post("/users/login", (req, res) => {
   if (!user) {
     return res.status(401).json({ error: "Invalid email or password" });
   }
-  res.json({ message: "Login successful", user });
+
+  const token = jwt.sign(
+    { userId: user.id, email: user.email },
+    "yourSecretKey",
+    {
+      expiresIn: "5h",
+    }
+  );
+
+  res.json({
+    message: "Login successful",
+    token,
+    user,
+  });
+});
+
+app.get("/users/:id", (req, res) => {
+  const user = users.find((i) => i.id === parseInt(req.params.id, 10));
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404).send("User not found");
+  }
 });
 
 // Изменение данных пользователя

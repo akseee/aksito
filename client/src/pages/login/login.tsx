@@ -1,15 +1,29 @@
-import { ChangeEvent, FC, FormEvent, useContext, useState } from "react";
+import { FC, useContext } from "react";
 import styles from "./login.module.css";
-import { Button, Input } from "@ui";
-import { UserContext, userType } from "src/context/UserContext";
-import { Navigate, NavLink } from "react-router-dom";
+import { Button } from "@ui";
+import { UserContext } from "src/context/UserContext";
+import { NavLink } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { LoginForm } from "src/utils/types";
+import { api } from "src/api/api";
 
 export const LoginPage: FC = () => {
-  const [userData, setUserData] = useState<
-    Pick<userType, "password" | "email">
-  >({
-    email: "",
-    password: "",
+  const { register, handleSubmit, formState } = useForm<LoginForm>();
+  const loading = formState.isLoading;
+
+  const { mutate, error } = useMutation({
+    mutationKey: ["login user"],
+    mutationFn: async (loginData: LoginForm) => {
+      const response = await api.post<{ token: string }>(
+        "/users/login",
+        loginData
+      );
+      return response.data;
+    },
+    onSuccess: (data) => {
+      login(data.token);
+    },
   });
 
   const context = useContext(UserContext);
@@ -18,50 +32,46 @@ export const LoginPage: FC = () => {
     throw new Error("no context found");
   }
 
-  const { isAuthChecked, isAuthenticated, login, logout, data } = context;
-  console.log(isAuthChecked, isAuthenticated, login, logout, data);
+  const { login } = context;
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setUserData({
-      ...userData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (!userData.email || !userData.password) {
-      return;
-    }
-    login({ ...userData, id: Number(Date.now()) });
-
-    return <Navigate to={"/profile"} />;
+  const onSubmit = (user: LoginForm) => {
+    mutate(user);
   };
 
   return (
     <>
       <h2 className={styles.title}>Вход</h2>
       <div className={styles.content}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <h2 className={styles.heading}>Войти в личный кабинет</h2>
-          <Input
-            placeholder="Email"
-            value={userData.email}
-            name="email"
-            handleChange={handleInputChange}
+        <h2 className={styles.heading}>Войти в личный кабинет</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+          <input
+            {...register("email", {
+              required: "Введите почту!",
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+                message: "Invalid email address",
+              },
+            })}
+            type="text"
+            placeholder="Введите почту"
+            className={styles.input}
           />
 
-          <Input
-            placeholder="Пароль"
-            value={userData.password}
-            name="password"
-            handleChange={handleInputChange}
+          <input
+            {...register("password", {
+              required: "Введите пароль!",
+            })}
+            type="password"
+            placeholder="Введите пароль"
+            className={styles.input}
           />
-          <Button htmlType="submit">Войти</Button>
+          <Button htmlType="submit">
+            {loading ? "Выполняется вход" : "Войти"}
+          </Button>
+          {error && <div className={styles.error}>{error.message}</div>}
         </form>
         <div className={styles.links}>
-          <NavLink to="/">Нет аккаунта?</NavLink>
+          <NavLink to="/register">Нет аккаунта?</NavLink>
           <NavLink to="/">Забыли пароль?</NavLink>
         </div>
       </div>

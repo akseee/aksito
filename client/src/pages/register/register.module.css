@@ -55,7 +55,3 @@
 .input:active {
   box-shadow: var(--box-shadow);
 }
-
-.error {
-  color: tomato;
-}

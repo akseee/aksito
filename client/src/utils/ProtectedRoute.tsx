@@ -21,19 +21,18 @@ export const ProtectedRoute = ({
     throw new Error("Protected Route must be used inside of <UserProvider/>");
   }
 
-  const { isAuthChecked, data } = context;
+  const { isAuthChecked, isAuthenticated } = context;
 
   if (!isAuthChecked) {
     return <Preloader />;
   }
 
-  if (!onlyUnAuth && !data) {
+  if (!isAuthenticated && !onlyUnAuth) {
     return <Navigate replace to="/login" state={{ from: location }} />;
   }
 
-  if (onlyUnAuth && data) {
+  if (isAuthenticated && onlyUnAuth) {
     const from = location.state?.from || { pathname: "/" };
-
     return <Navigate replace to={from} />;
   }
 

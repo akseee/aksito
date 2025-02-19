@@ -6,6 +6,7 @@ import {
   LoginPage,
   NotFound404,
   ProfilePage,
+  RegisterPage,
 } from "@pages";
 
 import styles from "./app.module.css";
@@ -59,7 +60,7 @@ const App = () => {
               path="/register"
               element={
                 <ProtectedRoute onlyUnAuth>
-                  <div>Rrgistration page</div>
+                  <RegisterPage></RegisterPage>
                 </ProtectedRoute>
               }
             />

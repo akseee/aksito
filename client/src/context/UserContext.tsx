@@ -1,72 +1,60 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-
-export type userType = {
-  id: number;
-  password: string;
-  email: string;
-};
+import { jwtDecode } from "jwt-decode";
 
 type InitialState = {
   isAuthChecked: boolean;
   isAuthenticated: boolean;
-  login: (userData: userType) => void;
+  login: (token: string) => void;
   logout: () => void;
-  data: null | userType;
 };
 
-const initialState: InitialState = {
+type contextProps = {
+  children: ReactNode;
+};
+
+const UserContext = createContext<InitialState>({
   isAuthChecked: false,
   isAuthenticated: false,
   login: () => {},
   logout: () => {},
-  data: null,
-};
+});
 
-type UserProviderProps = {
-  children: ReactNode;
-};
+const UserProvider = ({ children }: contextProps) => {
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-const UserContext = createContext<InitialState | null>(null);
-
-const UserProvider = ({ children }: UserProviderProps) => {
-  const [state, setState] = useState<InitialState>(initialState);
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
-    if (savedUser) {
-      setState((prevState) => ({
-        ...prevState,
-        isAuthChecked: true,
-        isAuthenticated: true,
-        data: JSON.parse(savedUser),
-      }));
-    } else {
-      setState((prevState) => ({
-        ...prevState,
-        isAuthChecked: true,
-      }));
+    const token = localStorage.getItem("authToken");
+
+    if (token) {
+      try {
+        const decoded = jwtDecode<{ exp: number }>(token);
+        if (decoded.exp * 1000 < Date.now()) {
+          throw new Error("Token expired");
+        }
+        setIsAuthenticated(true);
+      } catch (err) {
+        console.log(err);
+        localStorage.removeItem("authToken");
+      }
     }
+    setIsAuthChecked(true);
   }, []);
 
-  const login = (userData: userType) => {
-    setState({
-      ...state,
-      isAuthenticated: true,
-      data: userData,
-    });
-    localStorage.setItem("user", JSON.stringify(userData));
+  const login = (token: string) => {
+    localStorage.setItem("authToken", token);
+    setIsAuthenticated(true);
   };
 
   const logout = () => {
-    setState({
-      ...state,
-      isAuthenticated: false,
-      data: null,
-    });
-    localStorage.removeItem("user");
+    localStorage.removeItem("authToken");
+    setIsAuthenticated(false);
   };
 
   return (
-    <UserContext.Provider value={{ ...state, login, logout }}>
+    <UserContext.Provider
+      value={{ isAuthChecked, isAuthenticated, login, logout }}
+    >
       {children}
     </UserContext.Provider>
   );

@@ -1,3 +1,5 @@
+import { userType } from "src/context/UserContext";
+
 export enum RequestStatus {
   IDLE = "idle",
   SUCCESS = "success",
@@ -42,3 +44,13 @@ export type ServiceType = BaseType & {
   cost: number;
   workSchedule?: string;
 };
+
+// User types
+
+export type userType = {
+  id: number;
+  password: string;
+  email: string;
+};
+
+export type LoginForm = Pick<userType, "password" | "email">;
