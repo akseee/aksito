@@ -1,4 +1,4 @@
-import { Button } from "@ui";
+import { Button, ContentWrapper } from "@ui";
 import { FC, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "src/context/UserContext";
@@ -19,11 +19,10 @@ export const ProfilePage: FC = () => {
   };
 
   return (
-    <div>
-      <h2>Профиль</h2>
+    <ContentWrapper title="Профиль">
       <Button htmlType="button" onClick={handleLogout}>
         Выйти из аккаунта
       </Button>
-    </div>
+    </ContentWrapper>
   );
 };

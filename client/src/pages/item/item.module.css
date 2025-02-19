@@ -1,29 +1,7 @@
-.item-header {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.back {
-  position: relative;
-  justify-self: start;
-  border-bottom: 2px solid transparent;
-  opacity: 0.5;
-  font-size: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.back:hover {
-  border-bottom-color: var(--green);
-  opacity: 1;
-}
-
-.content {
+.box {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: max-content 300px 1fr;
-  gap: 2rem;
-  height: 100%;
-  padding: 1rem 3rem;
 }
 
 .type {
