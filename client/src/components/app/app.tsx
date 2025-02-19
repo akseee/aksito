@@ -5,6 +5,7 @@ import {
   ListPage,
   LoginPage,
   NotFound404,
+  PasswordRecoveryPage,
   ProfilePage,
   RegisterPage,
 } from "@pages";
@@ -65,10 +66,10 @@ const App = () => {
               }
             />
             <Route
-              path="/forgor-password"
+              path="/forgot-password"
               element={
                 <ProtectedRoute onlyUnAuth>
-                  <div>forgor psssword page</div>
+                  <PasswordRecoveryPage />
                 </ProtectedRoute>
               }
             />

@@ -1,5 +1,3 @@
-import { userType } from "src/context/UserContext";
-
 export enum RequestStatus {
   IDLE = "idle",
   SUCCESS = "success",

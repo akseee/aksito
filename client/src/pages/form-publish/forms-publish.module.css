@@ -92,5 +92,7 @@
 }
 
 .error {
+  grid-column: 1/-1;
   color: tomato;
+  text-align: center;
 }

@@ -1,17 +1,45 @@
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import styles from "./forms-publish.module.css";
 import { useForm } from "react-hook-form";
 import { Button } from "@ui";
-import { categoryType } from "src/utils/types";
+import { categoryType, ItemType } from "src/utils/types";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "src/api/api";
 
 export const FormPublishPage: FC = () => {
-  const { register } = useForm();
+  const { register, handleSubmit } = useForm<ItemType>();
+
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
 
-  const [category, setCategory] = useState<categoryType | null>(null);
+  const [category, setCategory] = useState<categoryType | "Выберите категорию">(
+    "Выберите категорию"
+  );
+
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  const { mutate, error } = useMutation({
+    mutationKey: ["post item"],
+    mutationFn: async (item: ItemType) => {
+      const response = await api.post("/items", item);
+      console.log(response);
+    },
+    onSuccess: () => {
+      navigate("/");
+    },
+  });
+
+  const onSubmit = (data: ItemType) => {
+    mutate(data);
+  };
+
+  const handleFormSubmit = () => {
+    if (formRef.current) {
+      formRef.current.requestSubmit();
+    }
+  };
 
   return (
     <>
@@ -28,7 +56,11 @@ export const FormPublishPage: FC = () => {
             Удалить объявление
           </Button>
         </div>
-        <form className={styles.form}>
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit(onSubmit)}
+          className={styles.form}
+        >
           {step === 1 && (
             <>
               <input
@@ -38,13 +70,13 @@ export const FormPublishPage: FC = () => {
                 className={styles.input}
               />
               <input
-                {...register("city", { required: true })}
+                {...register("location", { required: true })}
                 type="text"
                 placeholder="Город"
                 className={styles.input}
               />
               <textarea
-                {...register("desciption", { required: true })}
+                {...register("description", { required: true })}
                 placeholder="Описание"
                 className={styles.input}
               />
@@ -62,10 +94,9 @@ export const FormPublishPage: FC = () => {
                 {...register("type", { required: true })}
                 className={clsx(styles.input, styles.category)}
                 onChange={(e) => setCategory(e.target.value as categoryType)}
+                value={category}
               >
-                <option value="" disabled selected>
-                  Выберите категорию
-                </option>
+                <option value="default">Выберите категорию</option>
                 <option value="Недвижимость">Недвижимость</option>
                 <option value="Авто">Авто</option>
                 <option value="Услуги">Услуги</option>
@@ -73,13 +104,17 @@ export const FormPublishPage: FC = () => {
               {category === "Недвижимость" && (
                 <>
                   <input
-                    {...register("propertyType", { required: true })}
+                    {...register("propertyType", {
+                      required: true,
+                    })}
                     type="text"
                     placeholder="Тип недвижимости"
                     className={styles.input}
                   />
                   <input
-                    {...register("area", { required: true })}
+                    {...register("area", {
+                      required: true,
+                    })}
                     type="number"
                     placeholder="Площадь"
                     className={styles.input}
@@ -179,12 +214,19 @@ export const FormPublishPage: FC = () => {
               <Button htmlType="button" onClick={() => setStep(1)}>
                 Вернуться
               </Button>
-              <Button extraClass={styles.next} htmlType="submit">
+              <Button
+                extraClass={styles.next}
+                htmlType="submit"
+                onClick={handleFormSubmit}
+              >
                 Сохранить
               </Button>
             </>
           )}
         </div>
+        {error && (
+          <p className={styles.error}>Ошибка публикации: {error.message}</p>
+        )}
       </div>
     </>
   );

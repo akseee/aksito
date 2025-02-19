@@ -33,8 +33,9 @@ export const ListPage: FC = () => {
                     category={item.type}
                     location={item.location}
                     image={
-                      item.image ??
-                      "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+                      item.image !== ""
+                        ? item.image
+                        : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
                     }
                   ></CardPreview>
                 </NavLink>

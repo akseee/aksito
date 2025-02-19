@@ -19,6 +19,7 @@ app.use(
 
 // In-memory хранилище для объявлений
 let items = [];
+
 let users = [
   {
     id: 1,

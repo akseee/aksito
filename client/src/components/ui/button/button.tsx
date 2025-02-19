@@ -3,7 +3,6 @@ import styles from "./button.module.css";
 import clsx from "clsx";
 
 type ButtonProps = {
-  type?: "secondary" | "primary";
   onClick?: (() => void) | ((e: SyntheticEvent) => void);
   extraClass?: string;
   htmlType: "button" | "submit" | "reset";
