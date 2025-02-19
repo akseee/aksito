@@ -5,6 +5,7 @@ import { Button } from "@ui";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "src/api/api";
 import { UserContext } from "src/context/UserContext";
+import { NavLink } from "react-router-dom";
 
 type UserType = {
   name: string;
@@ -17,6 +18,7 @@ type UserType = {
 
 export const RegisterPage: FC = () => {
   const { register, handleSubmit } = useForm<UserType>();
+
   const context = useContext(UserContext);
 
   if (!context) {
@@ -44,7 +46,10 @@ export const RegisterPage: FC = () => {
 
   return (
     <>
-      <h2 className={styles.title}>Вход</h2>
+      <div className={styles["item-header"]}>
+        <NavLink to="/login" className={styles.back}>{`← назад`}</NavLink>
+        <h2 className={styles.title}>Вход</h2>
+      </div>
       <div className={styles.content}>
         <h2 className={styles.heading}>Зарегистрироваться</h2>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>

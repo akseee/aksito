@@ -1,0 +1,96 @@
+.title {
+  opacity: 0.5;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 3rem;
+  padding: 1rem 2rem;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.image {
+  grid-column: 2/ -1;
+  grid-row: 1 / span 3;
+  border-radius: 1rem;
+  text-align: center;
+  background-color: var(--background-color-darker);
+}
+
+.category {
+  grid-column: 1/ -1;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column: 1/-1;
+  gap: 1rem;
+  width: 100%;
+}
+
+.next:hover {
+  background-color: var(--green);
+}
+
+.delete:hover {
+  background-color: var(--red);
+}
+
+.links {
+  display: flex;
+  gap: 2rem;
+}
+
+.links a {
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+
+.links a:hover {
+  opacity: 1;
+}
+
+.input {
+  border: 1px solid var(--color);
+  border-radius: 1rem;
+  padding: 0.7rem;
+  box-shadow: var(--box-shadow);
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: center;
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.input:hover {
+  box-shadow: var(--box-shadow-green);
+  background-color: var(--background-color-lighter);
+}
+
+.input:focus {
+  box-shadow: var(--box-shadow-green);
+  outline: none;
+  background-color: var(--background-color-darker);
+}
+
+.input:active {
+  box-shadow: var(--box-shadow);
+}
+
+.error {
+  color: tomato;
+}

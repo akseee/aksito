@@ -72,7 +72,7 @@ export const LoginPage: FC = () => {
         </form>
         <div className={styles.links}>
           <NavLink to="/register">Нет аккаунта?</NavLink>
-          <NavLink to="/">Забыли пароль?</NavLink>
+          <NavLink to="/forgot-password">Забыли пароль?</NavLink>
         </div>
       </div>
     </>
