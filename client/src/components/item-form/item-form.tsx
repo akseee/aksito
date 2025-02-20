@@ -1,17 +1,17 @@
 import { FC, useRef, useState } from "react";
 import styles from "./item-form.module.css";
 import { Button } from "@ui";
-import { categoryType, ItemType } from "src/utils/types";
+import { TCategoryType, TItemType } from "src/utils/types";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 
 type ItemFormProps = {
-  submitForm: (data: ItemType) => void;
+  submitForm: (data: TItemType) => void;
   error: Error | null;
   isEditing: boolean;
   deleteItem?: () => void;
-  item?: ItemType;
+  item?: TItemType;
 };
 
 export const ItemForm: FC<ItemFormProps> = ({
@@ -21,16 +21,16 @@ export const ItemForm: FC<ItemFormProps> = ({
   isEditing,
   item,
 }) => {
-  const { register, handleSubmit } = useForm<ItemType>({
+  const { register, handleSubmit } = useForm<TItemType>({
     defaultValues: item || {},
   });
 
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
 
-  const [category, setCategory] = useState<categoryType | "Выберите категорию">(
-    item?.type || "Выберите категорию"
-  );
+  const [category, setCategory] = useState<
+    TCategoryType | "Выберите категорию"
+  >(item?.type || "Выберите категорию");
 
   const formRef = useRef<HTMLFormElement | null>(null);
 
@@ -97,7 +97,7 @@ export const ItemForm: FC<ItemFormProps> = ({
             <select
               {...register("type", { required: true })}
               className={clsx(styles.input, styles.category)}
-              onChange={(e) => setCategory(e.target.value as categoryType)}
+              onChange={(e) => setCategory(e.target.value as TCategoryType)}
               value={category}
             >
               <option value="default">Выберите категорию</option>

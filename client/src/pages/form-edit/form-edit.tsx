@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./form.module.css";
 import { ContentWrapper } from "@ui";
-import { ItemType } from "src/utils/types";
+import { TItemType } from "src/utils/types";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { api } from "src/api/api";
@@ -17,7 +17,7 @@ export const FormEditPage: FC = () => {
 
   const { mutate: mutateEdit, error } = useMutation({
     mutationKey: ["post item"],
-    mutationFn: async (item: ItemType) => {
+    mutationFn: async (item: TItemType) => {
       const response = await api.put(`/items/${id}`, item);
       console.log(response);
     },
@@ -37,7 +37,7 @@ export const FormEditPage: FC = () => {
     },
   });
 
-  const onSubmit = (data: ItemType) => {
+  const onSubmit = (data: TItemType) => {
     mutateEdit(data);
   };
 

@@ -1,0 +1,55 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input {
+  border: 1px solid var(--color);
+  border-radius: 1rem;
+  padding: 0.7rem;
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease-in-out;
+}
+
+.input:hover {
+  box-shadow: var(--box-shadow-green);
+  background-color: var(--background-color-lighter);
+}
+
+.input:focus {
+  box-shadow: var(--box-shadow-green);
+  outline: none;
+  background-color: var(--background-color-darker);
+}
+
+.input:active {
+  box-shadow: var(--box-shadow);
+}
+
+.error {
+  color: tomato;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.links a {
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+
+.links a:hover {
+  opacity: 1;
+}
+
+.login {
+  background-color: var(--green);
+}
+
+.login:hover {
+  background-color: var(--green);
+}

@@ -1,20 +1,16 @@
 import { FC, useContext } from "react";
 import styles from "./login.module.css";
-import { Button, ContentWrapper } from "@ui";
+import { ContentWrapper } from "@ui";
 import { UserContext } from "src/context/UserContext";
-import { NavLink } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { LoginForm } from "src/utils/types";
+import { TLoginForm } from "src/utils/types";
 import { api } from "src/api/api";
+import { LoginForm } from "@components";
 
 export const LoginPage: FC = () => {
-  const { register, handleSubmit, formState } = useForm<LoginForm>();
-  const loading = formState.isLoading;
-
-  const { mutate, error } = useMutation({
+  const { mutate, error, isError } = useMutation({
     mutationKey: ["login user"],
-    mutationFn: async (loginData: LoginForm) => {
+    mutationFn: async (loginData: TLoginForm) => {
       const response = await api.post<{ token: string }>(
         "/users/login",
         loginData
@@ -23,6 +19,9 @@ export const LoginPage: FC = () => {
     },
     onSuccess: (data) => {
       login(data.token);
+    },
+    onError: (data) => {
+      console.log(data);
     },
   });
 
@@ -34,44 +33,17 @@ export const LoginPage: FC = () => {
 
   const { login } = context;
 
-  const onSubmit = (user: LoginForm) => {
+  const onSubmit = (user: TLoginForm) => {
     mutate(user);
   };
 
   return (
     <ContentWrapper title="Вход" extraClass={styles.box}>
       <h2 className={styles.title}>Войти в аккаунт</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <input
-          {...register("email", {
-            required: "Введите почту!",
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
-              message: "Invalid email address",
-            },
-          })}
-          type="text"
-          placeholder="Введите почту"
-          className={styles.input}
-        />
-
-        <input
-          {...register("password", {
-            required: "Введите пароль!",
-          })}
-          type="password"
-          placeholder="Введите пароль"
-          className={styles.input}
-        />
-        <Button htmlType="submit">
-          {loading ? "Выполняется вход" : "Войти"}
-        </Button>
-        {error && <div className={styles.error}>{error.message}</div>}
-      </form>
-      <div className={styles.links}>
-        <NavLink to="/register">Нет аккаунта?</NavLink>
-        <NavLink to="/forgot-password">Забыли пароль?</NavLink>
-      </div>
+      <LoginForm
+        submitForm={onSubmit}
+        error={isError ? error : null}
+      ></LoginForm>
     </ContentWrapper>
   );
 };

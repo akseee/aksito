@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
-import { ItemType } from "src/utils/types";
+import { TItemType } from "src/utils/types";
 
 const getItemsList = async () => {
-  return axios.get<ItemType[]>("http://localhost:3000/items");
+  return axios.get<TItemType[]>("http://localhost:3000/items");
 };
 
 export function useItems() {

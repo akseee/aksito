@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./forms-publish.module.css";
 import { ContentWrapper } from "@ui";
-import { ItemType } from "src/utils/types";
+import { TItemType } from "src/utils/types";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "src/api/api";
@@ -12,7 +12,7 @@ export const FormPublishPage: FC = () => {
 
   const { mutate, error } = useMutation({
     mutationKey: ["post item"],
-    mutationFn: async (item: ItemType) => {
+    mutationFn: async (item: TItemType) => {
       const response = await api.post("/items", item);
       console.log(response);
     },
@@ -21,7 +21,7 @@ export const FormPublishPage: FC = () => {
     },
   });
 
-  const onSubmit = (data: ItemType) => {
+  const onSubmit = (data: TItemType) => {
     mutate(data);
   };
 

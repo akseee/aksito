@@ -1,9 +1,14 @@
 import { FC, JSX } from "react";
 import styles from "./item-details.module.css";
-import { AutoType, EstateType, ItemType, ServiceType } from "src/utils/types";
+import {
+  TAutoType,
+  TEstateType,
+  TItemType,
+  TServiceType,
+} from "src/utils/types";
 
 type ItemDetailsProps = {
-  item: ItemType;
+  item: TItemType;
 };
 
 export const ItemDetail: FC<ItemDetailsProps> = ({ item }) => {
@@ -13,7 +18,7 @@ export const ItemDetail: FC<ItemDetailsProps> = ({ item }) => {
 
   switch (item.type) {
     case "Авто": {
-      const { brand, model, year, mileage } = item as AutoType;
+      const { brand, model, year, mileage } = item as TAutoType;
       details = [
         <li key="brand">
           <div>Марка:</div> <p>{brand}</p>
@@ -34,7 +39,7 @@ export const ItemDetail: FC<ItemDetailsProps> = ({ item }) => {
     }
 
     case "Недвижимость": {
-      const { propertyType, area, rooms, price } = item as EstateType;
+      const { propertyType, area, rooms, price } = item as TEstateType;
       details = [
         <li key="type">
           <div>Тип недвижимости:</div> <p>{propertyType}</p>
@@ -54,7 +59,7 @@ export const ItemDetail: FC<ItemDetailsProps> = ({ item }) => {
 
     case "Услуги": {
       const { serviceType, experience, cost, workSchedule } =
-        item as ServiceType;
+        item as TServiceType;
       details = [
         <li key="service">
           <div>Тип услуги:</div> <p>{serviceType}</p>

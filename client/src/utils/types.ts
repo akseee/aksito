@@ -1,42 +1,31 @@
-export enum RequestStatus {
-  IDLE = "idle",
-  SUCCESS = "success",
-  FAILED = "error",
-  LOADING = "loading",
-}
+export type TCategoryType = "Недвижимость" | "Авто" | "Услуги";
 
-// REAL_ESTATE: "Недвижимость",
-// AUTO: "Авто",
-// SERVICES: "Услуги",
+export type TItemType = TEstateType | TAutoType | TServiceType;
 
-export type categoryType = "Недвижимость" | "Авто" | "Услуги";
-
-export type ItemType = EstateType | AutoType | ServiceType;
-
-export type BaseType = {
+export type TBaseType = {
   id: number;
   name: string;
   description: string;
   location: string;
-  type: categoryType;
+  type: TCategoryType;
   image?: string;
 };
 
-export type EstateType = BaseType & {
+export type TEstateType = TBaseType & {
   propertyType: string;
   area: number;
   rooms: number;
   price: number;
 };
 
-export type AutoType = BaseType & {
+export type TAutoType = TBaseType & {
   brand: string;
   model: string;
   year: number;
   mileage?: number;
 };
 
-export type ServiceType = BaseType & {
+export type TServiceType = TBaseType & {
   serviceType: string;
   experience: number;
   cost: number;
@@ -45,10 +34,10 @@ export type ServiceType = BaseType & {
 
 // User types
 
-export type userType = {
+export type TUserType = {
   id: number;
   password: string;
   email: string;
 };
 
-export type LoginForm = Pick<userType, "password" | "email">;
+export type TLoginForm = Pick<TUserType, "password" | "email">;

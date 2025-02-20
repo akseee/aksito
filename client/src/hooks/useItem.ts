@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { ItemType } from "src/utils/types";
+import { TItemType } from "src/utils/types";
 
 const getItemById = (id: string) => {
-  return axios.get<ItemType>(`http://localhost:3000/items/${id}`);
+  return axios.get<TItemType>(`http://localhost:3000/items/${id}`);
 };
 
 export function useItem(id: string) {
