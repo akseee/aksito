@@ -3,7 +3,7 @@
 - Node.js v20
 - Vite
 - React v18+
-- react-router-dom для роутинга
+- react-router-dom для роутинга, react-hooks для обработки форм, react-tanstack для управления серверным состоянием
 - Использование API, расположенного в папке server
 
 ## Установка зависимостей

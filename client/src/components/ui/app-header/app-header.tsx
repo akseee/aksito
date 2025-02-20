@@ -13,7 +13,7 @@ export const AppHeaderUI: FC<AppHeaderProps> = ({ user }) => {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>
-        <Link to="/">Aksito</Link>
+        <Link to="https://github.com/akseee">Aksito</Link>
       </h1>
       <nav className={styles.nav}>
         <NavLink
