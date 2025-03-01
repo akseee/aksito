@@ -24,7 +24,12 @@ let users = [
   {
     id: 1,
     email: "test@example.com",
+    name: "axe",
+    surname: "attaxe",
     password: "123123",
+    city: "Москва",
+    items: [],
+    image: "",
   },
 ];
 
@@ -35,12 +40,12 @@ const makeCounter = () => {
 
 const itemsIdCounter = makeCounter();
 
+// Ручки, связанные с объявлением
 // Создание нового объявления
-// @ts-ignore
 app.post("/items", (req, res) => {
   const { name, description, location, type, ...rest } = req.body;
 
-  // Validate common required fields
+  // Валидация общих полей
   if (!name || !description || !location || !type) {
     return res.status(400).json({ error: "Missing required common fields" });
   }
@@ -85,7 +90,6 @@ app.post("/items", (req, res) => {
 });
 
 // Получение всех объявлений
-// @ts-ignore
 app.get("/items", (req, res) => {
   res.json(items);
 });
@@ -126,28 +130,35 @@ app.delete("/items/:id", (req, res) => {
 
 const usersIdCounter = makeCounter();
 
-// @ts-ignore
 app.get("/users", (req, res) => {
   res.json(users);
 });
 
+// Ручки, связанные с пользователем
 // Регистрация пользователя
-// @ts-ignore
 app.post("/users/register", (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name, surname, city, image } = req.body;
   if (!email || !password) {
-    return res.status(400).json({ error: "Missing email or password" });
+    return res.status(400).json({ error: "Неверно заполненны данные" });
   }
   if (users.some((user) => user.email === email)) {
-    return res.status(400).json({ error: "User already exists" });
+    return res.status(400).json({ error: "Пользователь уже существует" });
   }
-  const user = { id: usersIdCounter(), email, password, items: [] };
+  const user = {
+    id: usersIdCounter(),
+    email,
+    password,
+    surname,
+    name,
+    city,
+    image,
+    items: [],
+  };
   users.push(user);
   res.status(201).json(user);
 });
 
 // Вход пользователя
-// @ts-ignore
 app.post("/users/login", (req, res) => {
   const { email, password } = req.body;
   const user = users.find((u) => u.email === email && u.password === password);
@@ -180,7 +191,6 @@ app.get("/users/:id", (req, res) => {
 });
 
 // Изменение данных пользователя
-// @ts-ignore
 app.put("/users/:id", (req, res) => {
   const user = users.find((u) => u.id === parseInt(req.params.id, 10));
   if (!user) {
@@ -191,7 +201,6 @@ app.put("/users/:id", (req, res) => {
 });
 
 // Добавление объявления пользователю
-// @ts-ignore
 app.post("/users/:id/items", (req, res) => {
   const user = users.find((u) => u.id === parseInt(req.params.id, 10));
   if (!user) {
@@ -215,7 +224,6 @@ app.post("/users/:id/items", (req, res) => {
 });
 
 // Удаление пользователя
-// @ts-ignore
 app.delete("/users/:id", (req, res) => {
   const userIndex = users.findIndex(
     (u) => u.id === parseInt(req.params.id, 10)
