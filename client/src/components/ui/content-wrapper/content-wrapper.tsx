@@ -8,13 +8,14 @@ type ContentWrapperProps = {
   children: ReactNode;
   button?: boolean;
   extraClass?: string;
+  to?: string;
 };
 
 export const ContentWrapper: FC<ContentWrapperProps> = ({
   title,
+  children,
   button = false,
   extraClass,
-  children,
 }) => (
   <main className={styles.wrapper}>
     <div className={clsx(styles.header)}>
