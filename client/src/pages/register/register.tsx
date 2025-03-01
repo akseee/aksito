@@ -34,12 +34,7 @@ export const RegisterPage: FC = () => {
   };
 
   return (
-    <ContentWrapper
-      title="Регистрация"
-      to="/login"
-      button
-      extraClass={styles.box}
-    >
+    <ContentWrapper title="Регистрация" button extraClass={styles.box}>
       <h2 className={styles.heading}>Зарегистрироваться</h2>
       <RegistrationForm
         registerForm={onSubmit}
