@@ -77,7 +77,7 @@ export const RegistrationForm: FC<TRegistrationFormProps> = ({
         placeholder="Ваш пароль"
         className={styles.input}
       />
-      <Button htmlType="submit">
+      <Button htmlType="submit" extraClass={styles["register-btn"]}>
         {loading ? `Создаем аккаунт` : `Создать аккаунт`}
       </Button>
       {error && (

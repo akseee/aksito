@@ -5,9 +5,6 @@
   width: 50%;
 }
 
-.heading {
-}
-
 .links {
   display: flex;
   gap: 2rem;
@@ -49,6 +46,6 @@
   color: tomato;
 }
 
-button {
+.register-btn {
   margin-top: 1rem;
 }
