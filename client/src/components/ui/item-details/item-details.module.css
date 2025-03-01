@@ -17,3 +17,8 @@
   color: var(--purple);
   font-weight: bold;
 }
+
+.type {
+  border-bottom: 2px solid var(--purple);
+  color: var(--purple);
+}

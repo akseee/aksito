@@ -35,7 +35,6 @@ let items = [
     description: "Просторная квартира с видом на парк",
     location: "Москва",
     type: "Недвижимость",
-    image: "https://example.com/estate1.jpg",
     propertyType: "Квартира",
     area: 85,
     rooms: 3,

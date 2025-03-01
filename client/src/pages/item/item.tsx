@@ -13,34 +13,39 @@ export const ItemPage: FC = () => {
   const { isAuthenticated } = context;
   const { item, isItemLoading } = useItem(id ?? "");
 
-  if (!context) return <p>No context</p>;
-  if (!item) return <p>Объявление не найдено</p>;
-
   return (
-    <ContentWrapper title={item.type} button={true} extraClass={styles.box}>
+    <ContentWrapper title={"Объявление"} button={true} extraClass={styles.box}>
       {isItemLoading && <Preloader />}
-      <h3 className={styles.title}>{item.name}</h3>
-      {isAuthenticated ? (
-        <Button
-          htmlType="button"
-          extraClass={styles.edit}
-          onClick={() => navigate(`/form/edit/${item.id}`)}
-        >
-          Редактировать объявление
-        </Button>
-      ) : (
-        <div></div>
+      {item && (
+        <>
+          <h3 className={styles.title}>{item.name}</h3>
+          {isAuthenticated ? (
+            <Button
+              htmlType="button"
+              extraClass={styles.edit}
+              onClick={() => navigate(`/form/edit/${item.id}`)}
+            >
+              Редактировать объявление
+            </Button>
+          ) : (
+            <div></div>
+          )}
+          <ItemDetail item={item} />
+          <img
+            className={styles.img}
+            alt="Ads image"
+            src={
+              item.image ||
+              "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+            }
+            onError={(e) =>
+              (e.currentTarget.src =
+                "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg")
+            }
+          />
+          <div className={styles.description}>{item.description}</div>
+        </>
       )}
-      <ItemDetail item={item} />
-      <img
-        className={styles.img}
-        alt="Ads image"
-        src={
-          item.image ||
-          "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
-        }
-      />
-      <div className={styles.description}>{item.description}</div>
     </ContentWrapper>
   );
 };

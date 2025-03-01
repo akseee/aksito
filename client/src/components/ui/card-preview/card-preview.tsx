@@ -20,7 +20,6 @@ enum Colors {
 
 export const CardPreview: FC<CardPreviewProps> = ({
   onClick,
-  type,
   title,
   category,
   location,
@@ -31,7 +30,18 @@ export const CardPreview: FC<CardPreviewProps> = ({
   return (
     <li className={styles.card} onClick={onClick}>
       <div className={styles["image-container"]}>
-        <img className={styles.img} src={image} alt={title} />
+        <img
+          className={styles.img}
+          onError={(e) =>
+            (e.currentTarget.src =
+              "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg")
+          }
+          src={
+            image ||
+            "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+          }
+          alt={title}
+        />
       </div>
       <div className={styles.content}>
         <p className={clsx(styles.category, styles[color])}>{category}</p>

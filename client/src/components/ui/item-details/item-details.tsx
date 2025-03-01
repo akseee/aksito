@@ -12,7 +12,7 @@ type ItemDetailsProps = {
 };
 
 export const ItemDetail: FC<ItemDetailsProps> = ({ item }) => {
-  const { location } = item;
+  const { location, type } = item;
 
   let details: JSX.Element[] = [];
 
@@ -81,12 +81,15 @@ export const ItemDetail: FC<ItemDetailsProps> = ({ item }) => {
   }
 
   return (
-    <ul className={styles.details}>
-      <li className={styles.detail}>
-        <div>Расположение:</div>
-        <p>{location}</p>
-      </li>
-      {details.map((detail) => detail)}
-    </ul>
+    <>
+      <ul className={styles.details}>
+        <li className={styles.type}>{type}</li>
+        <li className={styles.detail}>
+          <div>Расположение:</div>
+          <p>{location}</p>
+        </li>
+        {details.map((detail) => detail)}
+      </ul>
+    </>
   );
 };
