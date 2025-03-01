@@ -20,6 +20,16 @@ app.use(
 // In-memory хранилище для объявлений
 let items = [
   {
+    id: 0,
+    name: "Репетитор по математике",
+    description: "Подготовка к ЕГЭ и ОГЭ",
+    location: "Новосибирск",
+    type: "Услуги",
+    serviceType: "Образование",
+    experience: 6,
+    cost: 1200,
+  },
+  {
     id: 1,
     name: "Квартира в центре",
     description: "Просторная квартира с видом на парк",
@@ -224,16 +234,6 @@ let items = [
     year: 2016,
     mileage: 90000,
   },
-  {
-    id: 20,
-    name: "Репетитор по математике",
-    description: "Подготовка к ЕГЭ и ОГЭ",
-    location: "Новосибирск",
-    type: "Услуги",
-    serviceType: "Образование",
-    experience: 6,
-    cost: 1200,
-  },
 ];
 
 let users = [
@@ -250,7 +250,7 @@ let users = [
 ];
 
 const makeCounter = () => {
-  let count = items.length + 1;
+  let count = items.length;
   return () => count++;
 };
 
