@@ -20,9 +20,7 @@ export const ProfilePage: FC = () => {
 
   return (
     <ContentWrapper title="Профиль">
-      <Button htmlType="button" onClick={handleLogout}>
-        Выйти из аккаунта
-      </Button>
+      <Button onClick={handleLogout}>Выйти из аккаунта</Button>
     </ContentWrapper>
   );
 };

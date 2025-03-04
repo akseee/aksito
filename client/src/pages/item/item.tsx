@@ -21,7 +21,6 @@ export const ItemPage: FC = () => {
           <h3 className={styles.title}>{item.name}</h3>
           {isAuthenticated ? (
             <Button
-              htmlType="button"
               extraClass={styles.edit}
               onClick={() => navigate(`/form/edit/${item.id}`)}
             >

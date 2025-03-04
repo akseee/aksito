@@ -5,11 +5,7 @@ import { Button } from "@ui";
 export const SearchBar: FC = () => {
   return (
     <form className={styles.form}>
-      <Button
-        extraClass={styles.category}
-        onClick={() => console.log("click")}
-        htmlType="button"
-      >
+      <Button extraClass={styles.category} onClick={() => console.log("click")}>
         категория
       </Button>
       <input

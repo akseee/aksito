@@ -43,18 +43,10 @@ export const ItemForm: FC<ItemFormProps> = ({
   return (
     <>
       <div className={styles.steps}>
-        <Button htmlType="button" onClick={() => setStep(1)}>
-          Шаг 1
-        </Button>
-        <Button htmlType="button" onClick={() => setStep(2)}>
-          Шаг 2
-        </Button>
+        <Button onClick={() => setStep(1)}>Шаг 1</Button>
+        <Button onClick={() => setStep(2)}>Шаг 2</Button>
         {isEditing && deleteItem && (
-          <Button
-            extraClass={styles.delete}
-            htmlType="button"
-            onClick={() => deleteItem()}
-          >
+          <Button extraClass={styles.delete} onClick={() => deleteItem()}>
             Удалить объявление
           </Button>
         )}
@@ -201,23 +193,15 @@ export const ItemForm: FC<ItemFormProps> = ({
       <div className={styles.controls}>
         {step === 1 && (
           <>
-            <Button htmlType="button" onClick={() => navigate("/")}>
-              Отменить
-            </Button>
-            <Button
-              extraClass={styles.next}
-              htmlType="button"
-              onClick={() => setStep(2)}
-            >
+            <Button onClick={() => navigate("/")}>Отменить</Button>
+            <Button extraClass={styles.next} onClick={() => setStep(2)}>
               Далее
             </Button>
           </>
         )}
         {step === 2 && (
           <>
-            <Button htmlType="button" onClick={() => setStep(1)}>
-              Вернуться
-            </Button>
+            <Button onClick={() => setStep(1)}>Вернуться</Button>
             <Button
               extraClass={styles.next}
               htmlType="submit"

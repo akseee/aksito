@@ -5,7 +5,7 @@ import clsx from "clsx";
 type ButtonProps = {
   onClick?: (() => void) | ((e: SyntheticEvent) => void);
   extraClass?: string;
-  htmlType: "button" | "submit" | "reset";
+  htmlType?: "button" | "submit" | "reset";
   children: ReactNode;
 };
 
