@@ -10,243 +10,15 @@ const ItemTypes = {
 };
 
 const app = express();
+const items = require("./items").items;
+const users = require("./users").users;
+
 app.use(
   bodyParser.json(),
   cors({
     origin: "*",
   })
 );
-
-// In-memory хранилище для объявлений
-let items = [
-  {
-    id: 0,
-    name: "Репетитор по математике",
-    description: "Подготовка к ЕГЭ и ОГЭ",
-    location: "Новосибирск",
-    type: "Услуги",
-    serviceType: "Образование",
-    experience: 6,
-    cost: 1200,
-  },
-  {
-    id: 1,
-    name: "Квартира в центре",
-    description: "Просторная квартира с видом на парк",
-    location: "Москва",
-    type: "Недвижимость",
-    propertyType: "Квартира",
-    area: 85,
-    rooms: 3,
-    price: 12000000,
-  },
-  {
-    id: 2,
-    name: "Загородный дом",
-    description: "Уютный дом с садом и бассейном",
-    location: "Подмосковье",
-    type: "Недвижимость",
-    propertyType: "Дом",
-    area: 150,
-    rooms: 5,
-    price: 25000000,
-  },
-  {
-    id: 3,
-    name: "Офисное помещение",
-    description: "Помещение для бизнеса в центре города",
-    location: "Санкт-Петербург",
-    type: "Недвижимость",
-    propertyType: "Офис",
-    area: 60,
-    rooms: 2,
-    price: 8000000,
-  },
-  {
-    id: 4,
-    name: "Toyota Camry",
-    description: "Комфортный седан в отличном состоянии",
-    location: "Казань",
-    type: "Авто",
-    brand: "Toyota",
-    model: "Camry",
-    year: 2018,
-    mileage: 50000,
-  },
-  {
-    id: 5,
-    name: "BMW X5",
-    description: "Премиальный внедорожник с полным приводом",
-    location: "Екатеринбург",
-    type: "Авто",
-    brand: "BMW",
-    model: "X5",
-    year: 2020,
-    mileage: 30000,
-  },
-  {
-    id: 6,
-    name: "Lada Granta",
-    description: "Экономичный автомобиль для города",
-    location: "Нижний Новгород",
-    type: "Авто",
-    brand: "Lada",
-    model: "Granta",
-    year: 2015,
-    mileage: 100000,
-  },
-  {
-    id: 7,
-    name: "Ремонт сантехники",
-    description: "Качественный ремонт сантехники любой сложности",
-    location: "Новосибирск",
-    type: "Услуги",
-    serviceType: "Сантехника",
-    experience: 10,
-    cost: 2000,
-    workSchedule: "Пн-Пт, 9:00-18:00",
-  },
-  {
-    id: 8,
-    name: "Уроки английского",
-    description: "Индивидуальные занятия с носителем языка",
-    location: "Москва",
-    type: "Услуги",
-    serviceType: "Образование",
-    experience: 5,
-    cost: 1500,
-  },
-  {
-    id: 9,
-    name: "Фотосессия",
-    description: "Профессиональная фотосессия в студии или на природе",
-    location: "Санкт-Петербург",
-    type: "Услуги",
-    serviceType: "Фотография",
-    experience: 7,
-    cost: 5000,
-  },
-  {
-    id: 10,
-    name: "Квартира у моря",
-    description: "Апартаменты с видом на море",
-    location: "Сочи",
-    type: "Недвижимость",
-    propertyType: "Квартира",
-    area: 70,
-    rooms: 2,
-    price: 15000000,
-  },
-  {
-    id: 11,
-    name: "Audi A4",
-    description: "Стильный седан с минимальным пробегом",
-    location: "Краснодар",
-    type: "Авто",
-    brand: "Audi",
-    model: "A4",
-    year: 2019,
-    mileage: 40000,
-  },
-  {
-    id: 12,
-    name: "Ремонт компьютеров",
-    description: "Настройка и ремонт ПК и ноутбуков",
-    location: "Воронеж",
-    type: "Услуги",
-    serviceType: "IT",
-    experience: 8,
-    cost: 1000,
-  },
-  {
-    id: 13,
-    name: "Коттедж в лесу",
-    description: "Уединенный коттедж для отдыха",
-    location: "Карелия",
-    type: "Недвижимость",
-    propertyType: "Дом",
-    area: 200,
-    rooms: 6,
-    price: 30000000,
-  },
-  {
-    id: 14,
-    name: "Hyundai Solaris",
-    description: "Надежный автомобиль для города",
-    location: "Ростов-на-Дону",
-    type: "Авто",
-    brand: "Hyundai",
-    model: "Solaris",
-    year: 2017,
-    mileage: 80000,
-  },
-  {
-    id: 15,
-    name: "Уборка квартир",
-    description: "Генеральная уборка квартир и домов",
-    location: "Москва",
-    type: "Услуги",
-    serviceType: "Клининг",
-    experience: 3,
-    cost: 2500,
-  },
-  {
-    id: 16,
-    name: "Mercedes-Benz E-Class",
-    description: "Роскошный седан с полным комплектом опций",
-    location: "Санкт-Петербург",
-    type: "Авто",
-    brand: "Mercedes-Benz",
-    model: "E-Class",
-    year: 2021,
-    mileage: 20000,
-  },
-  {
-    id: 17,
-    name: "Юридические консультации",
-    description: "Помощь в решении юридических вопросов",
-    location: "Екатеринбург",
-    type: "Услуги",
-    serviceType: "Юриспруденция",
-    experience: 12,
-    cost: 3000,
-  },
-  {
-    id: 18,
-    name: "Таунхаус",
-    description: "Современный таунхаус в спальном районе",
-    location: "Казань",
-    type: "Недвижимость",
-    propertyType: "Таунхаус",
-    area: 120,
-    rooms: 4,
-    price: 18000000,
-  },
-  {
-    id: 19,
-    name: "Kia Rio",
-    description: "Экономичный и надежный автомобиль",
-    location: "Уфа",
-    type: "Авто",
-    brand: "Kia",
-    model: "Rio",
-    year: 2016,
-    mileage: 90000,
-  },
-];
-
-let users = [
-  {
-    id: 1,
-    email: "test@example.com",
-    name: "axe",
-    surname: "attaxe",
-    password: "123123",
-    city: "Москва",
-    items: [],
-    image: "",
-  },
-];
 
 const makeCounter = () => {
   let count = items.length;
@@ -306,7 +78,22 @@ app.post("/items", (req, res) => {
 
 // Получение всех объявлений
 app.get("/items", (req, res) => {
-  res.json(items);
+  const { page = "1" } = req.query;
+
+  const pageLimit = 5;
+  const pageNumber = parseInt(page, 10);
+
+  // рассчитываем индексы для среза массива
+  const from = (pageNumber - 1) * pageLimit;
+  const to = from + pageLimit;
+  const data = items.slice(from, to);
+
+  res.json({
+    items: data,
+    totalItems: items.length,
+    totalPages: Math.ceil(items.length / pageLimit),
+    currentPage: pageNumber,
+  });
 });
 
 // Получение объявления по его id
