@@ -1,3 +1,54 @@
-.div {
-  color: grey;
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-self: center;
+  width: 80%;
+  color: #9e9e9e;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page,
+.sides {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px dotted rgba(0, 0, 0, 0.1);
+  padding: 0.6rem;
+  transition: border-color 0.3s ease-in;
+}
+
+.page {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.page:hover,
+.sides:hover {
+  box-shadow: none;
+  background-color: var(--background-color-lighter);
+}
+
+.page:active,
+.sides:active {
+  color: var(--grey);
+  background-color: var(--background-color);
+}
+
+.page[disabled] {
+  border-color: var(--grey);
+  color: white;
+  background-color: var(--blue);
+  pointer-events: none;
+}
+
+.invis {
+  visibility: hidden;
 }

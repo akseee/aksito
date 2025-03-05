@@ -3,3 +3,16 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.warn {
+  align-self: center;
+  color: tomato;
+  text-align: center;
+}
+
+.link {
+  margin-left: 1rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: underline;
+}

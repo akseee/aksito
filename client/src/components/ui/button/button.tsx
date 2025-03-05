@@ -7,6 +7,7 @@ type ButtonProps = {
   extraClass?: string;
   htmlType?: "button" | "submit" | "reset";
   children: ReactNode;
+  disabled?: boolean;
 };
 
 export const Button: FC<ButtonProps> = ({
@@ -14,8 +15,10 @@ export const Button: FC<ButtonProps> = ({
   onClick = () => console.log("click"),
   htmlType = "button",
   children,
+  disabled = false,
 }) => (
   <button
+    disabled={disabled}
     onClick={onClick}
     type={htmlType}
     className={clsx(styles.button, extraClass)}

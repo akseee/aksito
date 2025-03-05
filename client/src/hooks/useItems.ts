@@ -1,24 +1,34 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
 import { TItemType } from "src/utils/types";
 
-const getItemsList = async () => {
-  return axios.get<TItemType[]>("http://localhost:3000/items");
+type TResonseData = {
+  items: TItemType[];
+  totalItems: number;
+  totalPages: number;
+  currentPage: number;
 };
 
-export function useItems() {
-  const { data, isLoading, isSuccess, isError } = useQuery({
-    queryKey: ["items"],
-    queryFn: getItemsList,
+const getItemsList = async (page: number, limit: number) => {
+  return axios.get<TResonseData>(
+    `http://localhost:3000/items?page=${page}&limit=${limit}`
+  );
+};
+
+export function useItems(page: number, limit: number) {
+  const { data, isLoading, isSuccess, isError, error } = useQuery({
+    queryKey: ["items", page],
+    queryFn: () => getItemsList(page, limit),
     select: (data) => data.data,
+    placeholderData: keepPreviousData,
   });
 
   useEffect(() => {
     if (isSuccess) {
-      console.log("fetched successfully!");
+      console.log(`fetched success!`);
     }
-  }, [isSuccess, data]);
+  }, [isSuccess]);
 
   useEffect(() => {
     if (isError) {
@@ -26,5 +36,5 @@ export function useItems() {
     }
   }, [isError]);
 
-  return { items: data, areItemsLoading: isLoading };
+  return { data, areItemsLoading: isLoading, error };
 }
