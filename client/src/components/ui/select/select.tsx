@@ -6,12 +6,14 @@ import { TOption } from "src/utils/types";
 type TSelectProps = {
   onSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   options: TOption[];
+  value: string;
   classOption?: string;
   classSelect?: string;
 };
 
 export const Select: FC<TSelectProps> = ({
   options,
+  value,
   onSelectChange,
   classOption,
   classSelect,
@@ -19,7 +21,8 @@ export const Select: FC<TSelectProps> = ({
   return (
     <select
       className={clsx(styles.select, classSelect)}
-      onChange={(e) => onSelectChange(e)}
+      value={value}
+      onChange={(e: ChangeEvent<HTMLSelectElement>) => onSelectChange(e)}
     >
       {options.map((option) => {
         return (

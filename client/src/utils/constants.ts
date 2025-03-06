@@ -23,21 +23,28 @@ export const optionsPages: TOption[] = [
   },
 ];
 
+export const enum CATEGORIES {
+  ALL = "ALL",
+  AUTO = "AUTO",
+  REAL_ESTATE = "REAL_ESTATE",
+  SERVICES = "SERVICES",
+}
+
 export const optionsCategories: TOption[] = [
   {
-    value: "ALL",
+    value: CATEGORIES.ALL,
     text: "Все",
   },
   {
-    value: "AUTO",
+    value: CATEGORIES.AUTO,
     text: "Авто",
   },
   {
-    value: "REAL_ESTATE",
+    value: CATEGORIES.REAL_ESTATE,
     text: "Недвижимость",
   },
   {
-    value: "SERVICES",
+    value: CATEGORIES.SERVICES,
     text: "Услуги",
   },
 ];

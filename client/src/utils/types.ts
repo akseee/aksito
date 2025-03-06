@@ -52,3 +52,8 @@ export type TOption = {
   text: string;
   value: string;
 };
+
+export type TSearchField = {
+  select: string;
+  query: string;
+};

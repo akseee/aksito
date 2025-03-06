@@ -10,6 +10,7 @@ import { useItems } from "src/hooks/useItems";
 
 import styles from "./list.module.css";
 import { Link } from "react-router-dom";
+import { TSearchField } from "src/utils/types";
 
 export const ListPage: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -47,9 +48,21 @@ export const ListPage: FC = () => {
     }
   }, [currentPage, data, setSearchParams]);
 
+  const handleSearch = (search: TSearchField) => {
+    const params = new URLSearchParams();
+
+    const query = search.query;
+    const category = search.select;
+
+    params.set("query", String(query));
+    params.set("category", String(category));
+
+    setSearchParams(params);
+  };
+
   return (
     <ContentWrapper title="Список объявлений">
-      <SearchBar onSearchSubmit={() => console.log("blank")}></SearchBar>
+      <SearchBar onSearchSubmit={handleSearch}></SearchBar>
       <Pagination
         currentPage={currentPage}
         totalPages={data?.totalPages || 1}
