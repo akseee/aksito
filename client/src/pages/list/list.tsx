@@ -14,18 +14,35 @@ import { Link } from "react-router-dom";
 export const ListPage: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page")) || 1;
-  const { data, areItemsLoading, error } = useItems(currentPage);
-
+  const currentLimit = Number(searchParams.get("limit")) || 5;
+  const { data, areItemsLoading, error } = useItems(currentPage, currentLimit);
   const items = data?.items || [];
 
   const onPageChange = (page: number) => {
-    setSearchParams({ page: String(page) });
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.set("page", String(page));
+      return params;
+    });
+  };
+
+  const onLimitChange = (limit: string) => {
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.set("limit", String(limit));
+      return params;
+    });
   };
 
   useEffect(() => {
     if (data && (currentPage > data.totalPages || currentPage < 1)) {
-      setSearchParams({
-        page: String(Math.min(data.totalPages, Math.max(currentPage, 1))),
+      setSearchParams((prev) => {
+        const params = new URLSearchParams(prev);
+        params.set(
+          "page",
+          String(Math.min(Math.max(currentPage, 1), data.totalPages))
+        );
+        return params;
       });
     }
   }, [currentPage, data, setSearchParams]);
@@ -37,6 +54,7 @@ export const ListPage: FC = () => {
         currentPage={currentPage}
         totalPages={data?.totalPages || 1}
         onPageChange={onPageChange}
+        onLimitChange={onLimitChange}
       ></Pagination>
       <ul className={styles["cards-list"]}>
         {error && (

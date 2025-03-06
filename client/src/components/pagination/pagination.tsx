@@ -5,14 +5,16 @@ import clsx from "clsx";
 
 type TPaginationProps = {
   currentPage: number;
-  onPageChange: (page: number) => void;
   totalPages: number;
+  onPageChange: (page: number) => void;
+  onLimitChange: (limit: string) => void;
 };
 
 export const Pagination: FC<TPaginationProps> = ({
   currentPage,
-  onPageChange,
   totalPages,
+  onPageChange,
+  onLimitChange,
 }) => {
   const maxVisiblePages = 5;
 
@@ -64,6 +66,26 @@ export const Pagination: FC<TPaginationProps> = ({
       >
         конец
       </Button>
+      <select
+        className={styles.select}
+        onChange={(e) => onLimitChange(e.target.value)}
+      >
+        <option className={styles.option} defaultChecked value="5">
+          5
+        </option>
+        <option className={styles.option} value="10">
+          10
+        </option>
+        <option className={styles.option} value="15">
+          15
+        </option>
+        <option className={styles.option} value="20">
+          20
+        </option>
+        <option className={styles.option} value="35">
+          35
+        </option>
+      </select>
     </div>
   );
 };

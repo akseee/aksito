@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { TItemType } from "src/utils/types";
 
-type TResonseData = {
+type TResponseData = {
   items: TItemType[];
   totalItems: number;
   totalPages: number;
@@ -11,16 +11,25 @@ type TResonseData = {
 };
 
 const getItemsList = async (page: number, limit: number) => {
-  return axios.get<TResonseData>(
-    `http://localhost:3000/items?page=${page}&limit=${limit}`
-  );
+  try {
+    const response = await axios.get<TResponseData>(
+      `http://localhost:3000/items?page=${page}&limit=${limit}`
+    );
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(
+        error.response?.data?.message || "Ошибка загрузки данных"
+      );
+    }
+    throw new Error("Ошибка загрузки данных");
+  }
 };
 
 export function useItems(page: number, limit: number) {
   const { data, isLoading, isSuccess, isError, error } = useQuery({
-    queryKey: ["items", page],
+    queryKey: ["items", page, limit],
     queryFn: () => getItemsList(page, limit),
-    select: (data) => data.data,
     placeholderData: keepPreviousData,
   });
 

@@ -78,9 +78,9 @@ app.post("/items", (req, res) => {
 
 // Получение всех объявлений
 app.get("/items", (req, res) => {
-  const { page = "1" } = req.query;
+  const { page = "1", limit = "5" } = req.query;
 
-  const pageLimit = 5;
+  const pageLimit = parseInt(limit, 10);
   const pageNumber = parseInt(page, 10);
 
   // рассчитываем индексы для среза массива
