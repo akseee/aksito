@@ -1,20 +1,35 @@
-import { FC } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import styles from "./search-bar.module.css";
-import { Button } from "@ui";
+import { Button, Select } from "@ui";
+import { optionsCategories } from "src/utils/constants";
 
-export const SearchBar: FC = () => {
+type TSearchBarProps = {
+  onSearchSubmit: () => void;
+};
+
+export const SearchBar: FC<TSearchBarProps> = ({ onSearchSubmit }) => {
+  const [query, setQuery] = useState("");
+
+  const onSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+  };
+
   return (
-    <form className={styles.form}>
-      <Button extraClass={styles.category} onClick={() => console.log("click")}>
-        категория
-      </Button>
+    <form className={styles.form} onSubmit={onSearchSubmit}>
+      <Select
+        options={optionsCategories}
+        classSelect={styles.select}
+        onSelectChange={onSelectChange}
+      ></Select>
       <input
         className={styles.input}
         type="search"
         name="search"
         placeholder="Enter search"
-        value={""}
-        onChange={(e) => console.log(e)}
+        value={query}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setQuery(e.target.value)
+        }
       />
       <Button
         extraClass={styles.search}

@@ -45,3 +45,10 @@ export type TUserType = {
 };
 
 export type TLoginForm = Pick<TUserType, "password" | "email">;
+
+// Etc
+
+export type TOption = {
+  text: string;
+  value: string;
+};

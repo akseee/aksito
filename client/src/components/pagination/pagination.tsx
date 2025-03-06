@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { ChangeEvent, FC } from "react";
 import styles from "./pagination.module.css";
-import { Button } from "@ui";
+import { Button, Select } from "@ui";
 import clsx from "clsx";
+import { optionsPages } from "src/utils/constants";
 
 type TPaginationProps = {
   currentPage: number;
@@ -66,26 +67,15 @@ export const Pagination: FC<TPaginationProps> = ({
       >
         конец
       </Button>
-      <select
-        className={styles.select}
-        onChange={(e) => onLimitChange(e.target.value)}
-      >
-        <option className={styles.option} defaultChecked value="5">
-          5
-        </option>
-        <option className={styles.option} value="10">
-          10
-        </option>
-        <option className={styles.option} value="15">
-          15
-        </option>
-        <option className={styles.option} value="20">
-          20
-        </option>
-        <option className={styles.option} value="35">
-          35
-        </option>
-      </select>
+
+      <Select
+        options={optionsPages}
+        classSelect={styles.select}
+        classOption={styles.option}
+        onSelectChange={(e: ChangeEvent<HTMLSelectElement>) =>
+          onLimitChange(e.target.value)
+        }
+      ></Select>
     </div>
   );
 };

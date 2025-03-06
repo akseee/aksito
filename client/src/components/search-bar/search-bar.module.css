@@ -20,3 +20,11 @@
   box-shadow: none;
   background-color: var(--background-color-darker);
 }
+
+.select {
+  border: 1px solid var(--color);
+  border-radius: 1rem;
+  padding: 0.7rem;
+  text-align: center;
+  background-color: transparent;
+}

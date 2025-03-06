@@ -19,7 +19,9 @@ export const Button: FC<ButtonProps> = ({
 }) => (
   <button
     disabled={disabled}
-    onClick={onClick}
+    onClick={(e) => {
+      onClick(e);
+    }}
     type={htmlType}
     className={clsx(styles.button, extraClass)}
   >

@@ -49,7 +49,7 @@ export const ListPage: FC = () => {
 
   return (
     <ContentWrapper title="Список объявлений">
-      <SearchBar></SearchBar>
+      <SearchBar onSearchSubmit={() => console.log("blank")}></SearchBar>
       <Pagination
         currentPage={currentPage}
         totalPages={data?.totalPages || 1}
