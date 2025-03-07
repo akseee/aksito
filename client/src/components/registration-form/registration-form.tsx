@@ -53,7 +53,7 @@ export const RegistrationForm: FC<TRegistrationFormProps> = ({
             message: "Неправильный формат почты",
           },
         })}
-        type="text"
+        type="phone"
         placeholder="Почта"
         className={styles.input}
       />
@@ -61,10 +61,6 @@ export const RegistrationForm: FC<TRegistrationFormProps> = ({
       <input
         {...register("phone", {
           required: "Введите телефон!",
-          pattern: {
-            value: /^\+7(?:[- .()]*\d){10}$/,
-            message: "Введите в формате +7",
-          },
         })}
         type="text"
         placeholder="Телефон"

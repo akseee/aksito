@@ -44,6 +44,9 @@ export const LoginPage: FC = () => {
         submitForm={onSubmit}
         error={isError ? error : null}
       ></LoginForm>
+      <p style={{ opacity: 0.2 }}>
+        OR: password: "123123", email: "test@example.com",
+      </p>
     </ContentWrapper>
   );
 };

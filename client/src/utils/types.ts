@@ -37,12 +37,13 @@ export type TServiceType = TBaseType & {
 export type TUserType = {
   id: number;
   password: string;
-  phone: string;
   email: string;
+  phone: string;
   name: string;
   surname: string;
   city: string;
   image?: string;
+  items?: TItemType[];
 };
 
 export type TLoginForm = Pick<TUserType, "password" | "email">;
