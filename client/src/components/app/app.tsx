@@ -14,8 +14,8 @@ import styles from "./app.module.css";
 
 import { Route, Routes } from "react-router-dom";
 import { AppHeader } from "@components";
-import { UserProvider } from "src/context/UserContext";
 import { ProtectedRoute } from "src/utils/ProtectedRoute";
+import { UserProvider } from "src/context/UserProvider";
 
 const App = () => {
   return (
