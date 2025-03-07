@@ -78,20 +78,36 @@ app.post("/items", (req, res) => {
 
 // Получение всех объявлений
 app.get("/items", (req, res) => {
-  const { page = "1", limit = "5" } = req.query;
+  const { page = "1", limit = "5", query, category } = req.query;
 
+  let data = [...items];
+
+  // страничные
   const pageLimit = parseInt(limit, 10);
   const pageNumber = parseInt(page, 10);
+
+  // поисковые
+  if (category && category !== "Все") {
+    data = data.filter((item) => item.type === category);
+  }
+
+  if (query) {
+    const searchQuery = query.toLowerCase();
+    data = data.filter((item) => item.name.toLowerCase().includes(searchQuery));
+  }
+
+  const totalItems = data.length;
+  const totalPages = Math.ceil(totalItems / pageLimit);
 
   // рассчитываем индексы для среза массива
   const from = (pageNumber - 1) * pageLimit;
   const to = from + pageLimit;
-  const data = items.slice(from, to);
+  data = data.slice(from, to);
 
   res.json({
     items: data,
-    totalItems: items.length,
-    totalPages: Math.ceil(items.length / pageLimit),
+    totalItems,
+    totalPages,
     currentPage: pageNumber,
   });
 });
