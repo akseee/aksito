@@ -37,6 +37,7 @@ export type TServiceType = TBaseType & {
 export type TUserType = {
   id: number;
   password: string;
+  phone: string;
   email: string;
   name: string;
   surname: string;

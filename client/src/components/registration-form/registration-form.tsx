@@ -22,6 +22,7 @@ export const RegistrationForm: FC<TRegistrationFormProps> = ({
   const cityError = formState.errors["city"]?.message;
   const emailError = formState.errors["email"]?.message;
   const passwordError = formState.errors["password"]?.message;
+  const phoneError = formState.errors["phone"]?.message;
 
   return (
     <form onSubmit={handleSubmit(registerForm)} className={styles.form}>
@@ -47,9 +48,26 @@ export const RegistrationForm: FC<TRegistrationFormProps> = ({
       <input
         {...register("email", {
           required: "Введите почту!",
+          pattern: {
+            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+            message: "Неправильный формат почты",
+          },
         })}
         type="text"
         placeholder="Почта"
+        className={styles.input}
+      />
+      <p className={styles.error}>{phoneError}</p>
+      <input
+        {...register("phone", {
+          required: "Введите телефон!",
+          pattern: {
+            value: /^\+7(?:[- .()]*\d){10}$/,
+            message: "Введите в формате +7",
+          },
+        })}
+        type="text"
+        placeholder="Телефон"
         className={styles.input}
       />
       <p className={styles.error}>{cityError}</p>
