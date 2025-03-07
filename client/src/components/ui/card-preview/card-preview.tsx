@@ -10,6 +10,7 @@ type CardPreviewProps = {
   category: string;
   location: string;
   image?: string;
+  extraClass?: string;
 };
 
 enum Colors {
@@ -24,11 +25,12 @@ export const CardPreview: FC<CardPreviewProps> = ({
   category,
   location,
   image,
+  extraClass,
 }) => {
   const color = Colors[category as keyof typeof Colors] || "";
 
   return (
-    <li className={styles.card} onClick={onClick}>
+    <li className={clsx(styles.card, extraClass)} onClick={onClick}>
       <div className={styles["image-container"]}>
         <img
           className={styles.img}
