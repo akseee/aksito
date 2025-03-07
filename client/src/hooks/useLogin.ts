@@ -17,10 +17,6 @@ const loginUser = async (loginData: TLoginForm) => {
 
 export function useLogin() {
   const context = useContext(UserContext);
-
-  if (!context) {
-    throw new Error("no context found");
-  }
   const { login } = context;
 
   const { mutate, error } = useMutation({

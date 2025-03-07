@@ -10,10 +10,6 @@ import { TUserType } from "src/utils/types";
 export const RegisterPage: FC = () => {
   const context = useContext(UserContext);
 
-  if (!context) {
-    throw new Error("no context found");
-  }
-
   const { login } = context;
   const { mutate, error } = useMutation({
     mutationKey: ["register user"],
