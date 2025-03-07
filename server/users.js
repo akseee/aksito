@@ -3,13 +3,14 @@
 let users = [
   {
     id: 1,
-    email: "test@example.com",
-    name: "axe",
-    surname: "attaxe",
     password: "123123",
-    city: "Москва",
-    items: [],
+    email: "test@example.com",
+    phone: "+79999999999",
+    name: "Тестировщик",
+    surname: "Тестовый",
+    city: "Тестостостан",
     image: "",
+    items: [],
   },
 ];
 

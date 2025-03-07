@@ -155,7 +155,7 @@ app.get("/users", (req, res) => {
 // Ручки, связанные с пользователем
 // Регистрация пользователя
 app.post("/users/register", (req, res) => {
-  const { email, password, name, surname, city, image } = req.body;
+  const { email, password, name, surname, city, image, phone } = req.body;
   if (!email || !password) {
     return res.status(400).json({ error: "Неверно заполненны данные" });
   }
@@ -170,10 +170,20 @@ app.post("/users/register", (req, res) => {
     name,
     city,
     image,
+    phone,
     items: [],
   };
   users.push(user);
-  res.status(201).json(user);
+
+  const token = jwt.sign(
+    { userId: user.id, email: user.email },
+    "yourSecretKey",
+    {
+      expiresIn: "5h",
+    }
+  );
+
+  res.status(201).json({ token, user });
 });
 
 // Вход пользователя
