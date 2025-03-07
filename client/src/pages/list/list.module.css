@@ -6,6 +6,7 @@
 
 .warn {
   align-self: center;
+  margin-top: 3rem;
   color: tomato;
   text-align: center;
 }

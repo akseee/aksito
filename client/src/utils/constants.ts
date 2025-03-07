@@ -24,10 +24,10 @@ export const optionsPages: TOption[] = [
 ];
 
 export const enum CATEGORIES {
-  ALL = "ALL",
-  AUTO = "AUTO",
-  REAL_ESTATE = "REAL_ESTATE",
-  SERVICES = "SERVICES",
+  ALL = "Все",
+  AUTO = "Авто",
+  REAL_ESTATE = "Недвижимость",
+  SERVICES = "Услуги",
 }
 
 export const optionsCategories: TOption[] = [

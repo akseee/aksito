@@ -6,7 +6,7 @@ import { TOption } from "src/utils/types";
 type TSelectProps = {
   onSelectChange: (e: ChangeEvent<HTMLSelectElement>) => void;
   options: TOption[];
-  value: string;
+  value?: string;
   classOption?: string;
   classSelect?: string;
 };

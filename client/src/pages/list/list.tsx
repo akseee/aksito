@@ -14,9 +14,19 @@ import { TSearchField } from "src/utils/types";
 
 export const ListPage: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const currentPage = Number(searchParams.get("page")) || 1;
   const currentLimit = Number(searchParams.get("limit")) || 5;
-  const { data, areItemsLoading, error } = useItems(currentPage, currentLimit);
+
+  const currentQuery = searchParams.get("query") ?? "";
+  const currentCategory = searchParams.get("category") ?? "Все";
+
+  const { data, areItemsLoading, error } = useItems(
+    currentPage,
+    currentLimit,
+    currentQuery,
+    currentCategory
+  );
   const items = data?.items || [];
 
   const onPageChange = (page: number) => {
@@ -54,8 +64,13 @@ export const ListPage: FC = () => {
     const query = search.query;
     const category = search.select;
 
-    params.set("query", String(query));
-    params.set("category", String(category));
+    if (query) {
+      params.set("query", String(query));
+    }
+
+    if (params) {
+      params.set("category", String(category));
+    }
 
     setSearchParams(params);
   };
