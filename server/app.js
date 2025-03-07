@@ -20,12 +20,12 @@ app.use(
   })
 );
 
-const makeCounter = () => {
-  let count = items.length;
+const makeCounter = (pool) => {
+  let count = pool;
   return () => count++;
 };
 
-const itemsIdCounter = makeCounter();
+const itemsIdCounter = makeCounter(items.length);
 
 // Ручки, связанные с объявлением
 // Создание нового объявления
@@ -146,7 +146,7 @@ app.delete("/items/:id", (req, res) => {
   }
 });
 
-const usersIdCounter = makeCounter();
+const usersIdCounter = makeCounter(users.length);
 
 app.get("/users", (req, res) => {
   res.json(users);
