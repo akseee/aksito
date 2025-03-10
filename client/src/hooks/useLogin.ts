@@ -17,13 +17,16 @@ const loginUser = async (loginData: TLoginForm) => {
 
 export function useLogin() {
   const context = useContext(UserContext);
-  const { login } = context;
+  const { login, logout } = context;
 
   const { mutate, error } = useMutation({
     mutationKey: ["login user"],
     mutationFn: loginUser,
     onSuccess: (data: TLoginResponse) => {
       login(data.token);
+    },
+    onError: () => {
+      logout();
     },
   });
 
