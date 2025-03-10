@@ -16,6 +16,11 @@ export const UserProvider = ({ children }: TUserProviderProps) => {
   useEffect(() => {
     const token = localStorage.getItem("authToken");
 
+    if (!token) {
+      setIsAuthChecked(true);
+      return;
+    }
+
     if (token) {
       try {
         const decoded = jwtDecode<{ exp: number }>(token);
