@@ -99,21 +99,19 @@ export const ListPage: FC = () => {
         {areItemsLoading && <Preloader />}
         {items?.map((item) => {
           return (
-            <NavLink to={`item/${item.id}`} key={item.id}>
-              <CardPreview
-                id={item.id}
-                type={item.type}
-                onClick={() => console.log(item.id)}
-                title={item.name}
-                category={item.type}
-                location={item.location}
-                image={
-                  item.image !== ""
-                    ? item.image
-                    : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
-                }
-              ></CardPreview>
-            </NavLink>
+            <CardPreview
+              id={item.id}
+              type={item.type}
+              onClick={() => console.log(item.id)}
+              title={item.name}
+              category={item.type}
+              location={item.location}
+              image={
+                item.image !== ""
+                  ? item.image
+                  : "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+              }
+            ></CardPreview>
           );
         })}
       </ul>
