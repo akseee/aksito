@@ -2,6 +2,7 @@
 
 let items = [
   {
+    owner_id: 1,
     id: 0,
     name: "Репетитор по математике",
     description: "Подготовка к ЕГЭ и ОГЭ",
@@ -12,6 +13,7 @@ let items = [
     cost: 1200,
   },
   {
+    owner_id: 1,
     id: 1,
     name: "Квартира в центре",
     description: "Просторная квартира с видом на парк",
@@ -23,6 +25,7 @@ let items = [
     price: 12000000,
   },
   {
+    owner_id: 1,
     id: 2,
     name: "Загородный дом",
     description: "Уютный дом с садом и бассейном",
@@ -34,6 +37,7 @@ let items = [
     price: 25000000,
   },
   {
+    owner_id: 2,
     id: 3,
     name: "Офисное помещение",
     description: "Помещение для бизнеса в центре города",
@@ -45,6 +49,7 @@ let items = [
     price: 8000000,
   },
   {
+    owner_id: 0,
     id: 4,
     name: "Toyota Camry",
     description: "Комфортный седан в отличном состоянии",
@@ -56,6 +61,7 @@ let items = [
     mileage: 50000,
   },
   {
+    owner_id: 1,
     id: 5,
     name: "BMW X5",
     description: "Премиальный внедорожник с полным приводом",
@@ -67,6 +73,7 @@ let items = [
     mileage: 30000,
   },
   {
+    owner_id: 1,
     id: 6,
     name: "Lada Granta",
     description: "Экономичный автомобиль для города",
@@ -78,6 +85,7 @@ let items = [
     mileage: 100000,
   },
   {
+    owner_id: 1,
     id: 7,
     name: "Ремонт сантехники",
     description: "Качественный ремонт сантехники любой сложности",
@@ -89,6 +97,7 @@ let items = [
     workSchedule: "Пн-Пт, 9:00-18:00",
   },
   {
+    owner_id: 1,
     id: 8,
     name: "Уроки английского",
     description: "Индивидуальные занятия с носителем языка",
@@ -99,6 +108,7 @@ let items = [
     cost: 1500,
   },
   {
+    owner_id: 0,
     id: 9,
     name: "Фотосессия",
     description: "Профессиональная фотосессия в студии или на природе",
@@ -109,6 +119,7 @@ let items = [
     cost: 5000,
   },
   {
+    owner_id: 0,
     id: 10,
     name: "Квартира у моря",
     description: "Апартаменты с видом на море",
@@ -120,6 +131,7 @@ let items = [
     price: 15000000,
   },
   {
+    owner_id: 1,
     id: 11,
     name: "Audi A4",
     description: "Стильный седан с минимальным пробегом",
@@ -131,6 +143,7 @@ let items = [
     mileage: 40000,
   },
   {
+    owner_id: 2,
     id: 12,
     name: "Ремонт компьютеров",
     description: "Настройка и ремонт ПК и ноутбуков",
@@ -141,6 +154,7 @@ let items = [
     cost: 1000,
   },
   {
+    owner_id: 1,
     id: 13,
     name: "Коттедж в лесу",
     description: "Уединенный коттедж для отдыха",
@@ -152,6 +166,7 @@ let items = [
     price: 30000000,
   },
   {
+    owner_id: 2,
     id: 14,
     name: "Hyundai Solaris",
     description: "Надежный автомобиль для города",
@@ -163,6 +178,7 @@ let items = [
     mileage: 80000,
   },
   {
+    owner_id: 2,
     id: 15,
     name: "Уборка квартир",
     description: "Генеральная уборка квартир и домов",
@@ -173,6 +189,7 @@ let items = [
     cost: 2500,
   },
   {
+    owner_id: 0,
     id: 16,
     name: "Mercedes-Benz E-Class",
     description: "Роскошный седан с полным комплектом опций",
@@ -184,6 +201,7 @@ let items = [
     mileage: 20000,
   },
   {
+    owner_id: 1,
     id: 17,
     name: "Юридические консультации",
     description: "Помощь в решении юридических вопросов",
@@ -194,6 +212,7 @@ let items = [
     cost: 3000,
   },
   {
+    owner_id: 1,
     id: 18,
     name: "Таунхаус",
     description: "Современный таунхаус в спальном районе",
@@ -205,6 +224,7 @@ let items = [
     price: 18000000,
   },
   {
+    owner_id: 1,
     id: 19,
     name: "Kia Rio",
     description: "Экономичный и надежный автомобиль",
@@ -216,6 +236,7 @@ let items = [
     mileage: 90000,
   },
   {
+    owner_id: 1,
     id: 20,
     name: "Mercedes-Benz E-Class",
     description: "Роскошный седан с полным комплектом опций",
@@ -227,6 +248,7 @@ let items = [
     mileage: 20000,
   },
   {
+    owner_id: 1,
     id: 21,
     name: "Юридические консультации",
     description: "Помощь в решении юридических вопросов",
@@ -237,6 +259,7 @@ let items = [
     cost: 3000,
   },
   {
+    owner_id: 0,
     id: 22,
     name: "Таунхаус",
     description: "Современный таунхаус в спальном районе",
@@ -248,6 +271,7 @@ let items = [
     price: 18000000,
   },
   {
+    owner_id: 1,
     id: 23,
     name: "Kia Rio",
     description: "Экономичный и надежный автомобиль",
@@ -259,6 +283,7 @@ let items = [
     mileage: 90000,
   },
   {
+    owner_id: 2,
     id: 24,
     name: "Kia Rio",
     description: "Экономичный и надежный автомобиль",
@@ -270,6 +295,7 @@ let items = [
     mileage: 90000,
   },
   {
+    owner_id: 1,
     id: 25,
     name: "Kia Rio",
     description: "Экономичный и надежный автомобиль",
@@ -281,6 +307,7 @@ let items = [
     mileage: 90000,
   },
   {
+    owner_id: 0,
     id: 26,
     name: "Квартира на окраине города",
     description: "Уютная квартира с хорошей транспортной развязкой",
@@ -292,6 +319,7 @@ let items = [
     price: 5000000,
   },
   {
+    owner_id: 0,
     id: 27,
     name: "Седан Honda Accord",
     description: "Комфортабельный и экономичный седан с хорошей динамикой",
@@ -303,6 +331,7 @@ let items = [
     mileage: 45000,
   },
   {
+    owner_id: 0,
     id: 28,
     name: "Массаж и восстановление",
     description: "Профессиональный массаж с индивидуальным подходом",
@@ -313,6 +342,7 @@ let items = [
     cost: 1500,
   },
   {
+    owner_id: 0,
     id: 29,
     name: "Коттедж у озера",
     description: "Отличный дом для отдыха с собственным выходом к озеру",
@@ -324,6 +354,7 @@ let items = [
     price: 12000000,
   },
   {
+    owner_id: 0,
     id: 30,
     name: "Mercedes-Benz G-Class",
     description:
@@ -336,6 +367,7 @@ let items = [
     mileage: 20000,
   },
   {
+    owner_id: 1,
     id: 31,
     name: "Ремонт бытовой техники",
     description:
@@ -347,6 +379,7 @@ let items = [
     cost: 2500,
   },
   {
+    owner_id: 1,
     id: 32,
     name: "Дача в Подмосковье",
     description: "Уютная дача с большим участком земли",
@@ -358,6 +391,7 @@ let items = [
     price: 7000000,
   },
   {
+    owner_id: 1,
     id: 33,
     name: "BMW X6",
     description:
@@ -370,6 +404,7 @@ let items = [
     mileage: 30000,
   },
   {
+    owner_id: 1,
     id: 34,
     name: "Фотосессия на природе",
     description: "Профессиональная фотосессия на свежем воздухе для всей семьи",
@@ -380,6 +415,7 @@ let items = [
     cost: 4000,
   },
   {
+    owner_id: 1,
     id: 35,
     name: "Дом с бассейном",
     description: "Современный дом с бассейном и зоной отдыха",
@@ -391,6 +427,7 @@ let items = [
     price: 30000000,
   },
   {
+    owner_id: 1,
     id: 36,
     name: "Квартира с ремонтом в центре",
     description: "Современная квартира с ремонтом, готова к заселению",
@@ -402,6 +439,7 @@ let items = [
     price: 4500000,
   },
   {
+    owner_id: 2,
     id: 37,
     name: "BMW 3 Series",
     description: "Элегантный седан с отличной динамикой и экономичностью",
@@ -413,6 +451,7 @@ let items = [
     mileage: 60000,
   },
   {
+    owner_id: 2,
     id: 38,
     name: "Услуги по укладке плитки",
     description:
@@ -424,6 +463,7 @@ let items = [
     cost: 2000,
   },
   {
+    owner_id: 2,
     id: 39,
     name: "Коттедж с баней",
     description: "Просторный коттедж с баней и зоной для барбекю",
@@ -435,6 +475,7 @@ let items = [
     price: 8000000,
   },
   {
+    owner_id: 2,
     id: 40,
     name: "Audi Q5",
     description:
@@ -447,6 +488,7 @@ let items = [
     mileage: 80000,
   },
   {
+    owner_id: 2,
     id: 41,
     name: "Косметические услуги",
     description: "Профессиональные услуги по уходу за кожей лица и тела",
@@ -457,6 +499,7 @@ let items = [
     cost: 1500,
   },
   {
+    owner_id: 2,
     id: 42,
     name: "Дом на берегу моря",
     description: "Элитный дом на побережье с красивым видом на море",
@@ -468,6 +511,7 @@ let items = [
     price: 25000000,
   },
   {
+    owner_id: 2,
     id: 43,
     name: "Volkswagen Golf",
     description:
@@ -480,6 +524,7 @@ let items = [
     mileage: 30000,
   },
   {
+    owner_id: 2,
     id: 44,
     name: "Ремонт электрооборудования",
     description:
@@ -491,6 +536,7 @@ let items = [
     cost: 3500,
   },
   {
+    owner_id: 2,
     id: 45,
     name: "Дуплекс в центре города",
     description: "Роскошный дуплекс с панорамным видом на город",
@@ -502,6 +548,7 @@ let items = [
     price: 12000000,
   },
   {
+    owner_id: 2,
     id: 46,
     name: "Honda CR-V",
     description:
@@ -514,6 +561,7 @@ let items = [
     mileage: 50000,
   },
   {
+    owner_id: 0,
     id: 47,
     name: "Услуги по укладке ламината",
     description: "Укладка качественного ламината с гарантией",
@@ -524,6 +572,7 @@ let items = [
     cost: 1800,
   },
   {
+    owner_id: 0,
     id: 48,
     name: "Загородный дом с сауной",
     description: "Большой загородный дом с сауной и садом",
@@ -535,6 +584,7 @@ let items = [
     price: 15000000,
   },
   {
+    owner_id: 0,
     id: 49,
     name: "Nissan X-Trail",
     description: "Проходимый внедорожник с отличными внедорожными качествами",
@@ -546,6 +596,7 @@ let items = [
     mileage: 70000,
   },
   {
+    owner_id: 0,
     id: 50,
     name: "Ремонт компьютеров и ноутбуков",
     description: "Профессиональная настройка и ремонт компьютеров и ноутбуков",
@@ -556,6 +607,7 @@ let items = [
     cost: 2500,
   },
   {
+    owner_id: 0,
     id: 51,
     name: "Коттедж в лесу",
     description: "Уединенный коттедж в лесной зоне с большим участком земли",
@@ -567,6 +619,7 @@ let items = [
     price: 9500000,
   },
   {
+    owner_id: 0,
     id: 52,
     name: "Mitsubishi Outlander",
     description:
@@ -579,6 +632,7 @@ let items = [
     mileage: 25000,
   },
   {
+    owner_id: 1,
     id: 53,
     name: "Услуги по ремонту электрики",
     description: "Профессиональный ремонт электрики в квартирах и домах",
@@ -589,6 +643,7 @@ let items = [
     cost: 3000,
   },
   {
+    owner_id: 1,
     id: 54,
     name: "Квартира в новом доме",
     description: "Просторная квартира в новом жилом комплексе с ремонтом",
@@ -600,6 +655,7 @@ let items = [
     price: 7500000,
   },
   {
+    owner_id: 1,
     id: 55,
     name: "Toyota Camry",
     description:
@@ -612,6 +668,7 @@ let items = [
     mileage: 15000,
   },
   {
+    owner_id: 0,
     id: 56,
     name: "Услуги по стрижке и укладке",
     description:

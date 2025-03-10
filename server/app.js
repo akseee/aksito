@@ -146,13 +146,22 @@ app.delete("/items/:id", (req, res) => {
   }
 });
 
+// Добавление объявления пользователю
+app.get("/user/items/:id", (req, res) => {
+  const userId = Number(req.params.id);
+  const filterItems = [...items].filter((item) => {
+    return item.owner_id === userId;
+  });
+  res.json(filterItems);
+});
+
+// Ручки, связанные с пользователем
 const usersIdCounter = makeCounter(users.length);
 
 app.get("/users", (req, res) => {
   res.json(users);
 });
 
-// Ручки, связанные с пользователем
 // Регистрация пользователя
 app.post("/users/register", (req, res) => {
   const { email, password, name, surname, city, image, phone } = req.body;
@@ -226,29 +235,6 @@ app.put("/users/:id", (req, res) => {
   }
   Object.assign(user, req.body);
   res.json(user);
-});
-
-// Добавление объявления пользователю
-app.post("/users/:id/items", (req, res) => {
-  const user = users.find((u) => u.id === parseInt(req.params.id, 10));
-  if (!user) {
-    return res.status(404).json({ error: "User not found" });
-  }
-  const { name, description, location, type, ...rest } = req.body;
-  if (!name || !description || !location || !type) {
-    return res.status(400).json({ error: "Missing required common fields" });
-  }
-  const item = {
-    id: itemsIdCounter(),
-    name,
-    description,
-    location,
-    type,
-    ...rest,
-  };
-  user.items.push(item);
-  items.push(item);
-  res.status(201).json(item);
 });
 
 // Удаление пользователя
