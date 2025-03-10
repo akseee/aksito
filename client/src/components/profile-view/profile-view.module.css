@@ -65,3 +65,7 @@
 .buttons button {
   width: 100%;
 }
+
+.warn {
+  color: tomato;
+}

@@ -48,3 +48,6 @@ export const optionsCategories: TOption[] = [
     text: "Услуги",
   },
 ];
+
+export const DEFAULT_USER_IMAGE =
+  "https://img.freepik.com/free-vector/sweet-eyed-kitten-cartoon-character_1308-133242.jpg?t=st=1741370557~exp=1741374157~hmac=d81fd96ecb84927ab4070d44fb9b56ae0e6d009d4f33dbedd79908f59b7f2a69&w=996";

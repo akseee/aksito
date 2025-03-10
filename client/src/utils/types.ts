@@ -4,6 +4,7 @@ export type TItemType = TEstateType | TAutoType | TServiceType;
 
 export type TBaseType = {
   id: number;
+  owner_id: number;
   name: string;
   description: string;
   location: string;
@@ -43,7 +44,6 @@ export type TUserType = {
   surname: string;
   city: string;
   image?: string;
-  items?: TItemType[];
 };
 
 export type TLoginForm = Pick<TUserType, "password" | "email">;
