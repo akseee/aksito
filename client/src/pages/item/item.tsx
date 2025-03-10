@@ -8,12 +8,23 @@ import clsx from "clsx";
 
 export const ItemPage: FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>();
+  const { id: itemId } = useParams<{ id: string }>();
 
   const token = localStorage.getItem("authToken");
-  const { userId } = jwtDecode<{ userId: number }>(token!);
+  const isTokenValid = token && typeof token === "string";
 
-  const { item, isItemLoading } = useItem(id ?? "");
+  let userId: number | null = null;
+
+  if (isTokenValid) {
+    try {
+      const decoded = jwtDecode<{ userId: number }>(token);
+      userId = decoded.userId;
+    } catch (err) {
+      console.error("Ошибка декодирования токена:", err);
+    }
+  }
+
+  const { item, isItemLoading } = useItem(itemId ?? "");
 
   const owner = item && userId === item!.owner_id;
   return (
