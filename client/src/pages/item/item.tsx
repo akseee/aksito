@@ -1,25 +1,35 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { useItem } from "src/hooks/useItem";
 import styles from "./item.module.css";
 import { Button, ContentWrapper, ItemDetail, Preloader } from "@ui";
 import { useNavigate, useParams } from "react-router-dom";
-import { UserContext } from "src/context/UserContext";
+import { jwtDecode } from "jwt-decode";
+import clsx from "clsx";
 
 export const ItemPage: FC = () => {
   const navigate = useNavigate();
-  const context = useContext(UserContext);
   const { id } = useParams<{ id: string }>();
 
-  const { isAuthenticated } = context;
+  const token = localStorage.getItem("authToken");
+  const { userId } = jwtDecode<{ userId: number }>(token!);
+
   const { item, isItemLoading } = useItem(id ?? "");
 
+  const owner = item && userId === item!.owner_id;
   return (
-    <ContentWrapper title={"Объявление"} button={true} extraClass={styles.box}>
+    <ContentWrapper
+      title={"Объявление"}
+      button={true}
+      extraClass={clsx(styles.box, owner && styles.owner)}
+    >
       {isItemLoading && <Preloader />}
       {item && (
         <>
-          <h3 className={styles.title}>{item.name}</h3>
-          {isAuthenticated ? (
+          <h3 className={clsx(styles.title, owner && styles["owner-title"])}>
+            {owner && "Мое объявление:  "}
+            {item.name}
+          </h3>
+          {owner ? (
             <Button
               extraClass={styles.edit}
               onClick={() => navigate(`/form/edit/${item.id}`)}

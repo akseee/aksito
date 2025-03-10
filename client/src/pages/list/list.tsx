@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import { Pagination, SearchBar } from "@components";
 

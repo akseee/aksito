@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: max-content 300px 1fr;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 3px 3px var(--grey);
 }
 
 .type {
@@ -28,4 +30,12 @@
 .description {
   padding: 1rem;
   font-size: 1.2rem;
+}
+
+.owner {
+  box-shadow: 3px 3px 3px 3px var(--red);
+}
+
+.owner-title {
+  color: var(--red);
 }
