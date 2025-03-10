@@ -2,27 +2,19 @@ import { FC } from "react";
 import styles from "./forms-publish.module.css";
 import { ContentWrapper } from "@ui";
 import { TItemType } from "src/utils/types";
-import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import { api } from "src/api/api";
+
 import { ItemForm } from "@components";
+import { usePublishItem } from "src/hooks/usePublishItem";
+import { jwtDecode } from "jwt-decode";
 
 export const FormPublishPage: FC = () => {
-  const navigate = useNavigate();
+  const token = localStorage.getItem("authToken");
+  const { userId } = jwtDecode<{ userId: number }>(token!);
 
-  const { mutate, error } = useMutation({
-    mutationKey: ["post item"],
-    mutationFn: async (item: TItemType) => {
-      const response = await api.post("/items", item);
-      console.log(response);
-    },
-    onSuccess: () => {
-      navigate("/");
-    },
-  });
+  const { mutate, error } = usePublishItem();
 
   const onSubmit = (data: TItemType) => {
-    mutate(data);
+    mutate({ ...data, owner_id: userId });
   };
 
   return (
